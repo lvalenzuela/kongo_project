@@ -1,0 +1,80 @@
+<section class="content-header no-margin">
+    <h1>
+        Capacitaciones
+        <small>Listado de Capacitaciones</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="active">Listado de Capacitaciones</li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title">Búsqueda de Capacitaciones</h3>
+				</div>
+				<%=form_tag do%>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-9 form-group">
+							<label>Nombre</label>
+							<%=text_field_tag :training_name, nil, :class => "form-control"%>
+						</div>
+						<div class="col-xs-3 form-group">
+							<label>Periodo de Validez</label>
+							<%=number_field_tag :validity_period, nil, :min => 0, :class => "form-control"%>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer clearfix">
+					<div class="pull-right">
+						<%=submit_tag "Buscar", :class => "btn btn-primary "%>
+					</div>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title">Listado de Capacitaciones</h3>
+					<div class="box-tools">
+						<%=link_to "Nueva Capacitación", {:action => :new}, {:class => "btn btn-default pull-right"}%>
+					</div>
+				</div>
+				<div class="box-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Nombre</th>
+								<th>Periodo de Validez</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if @trainings.blank?%>
+							<tr>
+								<td colspan="3"> No hay datos para mostrar.</td>
+							</tr>
+							<%else%>
+								<%@trainings.each do |t|%>
+								<tr>
+									<td><%=t.id%></td>
+									<td><%=t.name%></td>
+									<td><%=t.validity_period%></td>
+								</tr>
+								<%end%>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

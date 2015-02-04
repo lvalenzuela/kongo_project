@@ -48,3 +48,6 @@ end
 
 #font-awesome
 gem 'font-awesome-rails'
+
+#jquery con turbolinks
+gem 'jquery-turbolinks'

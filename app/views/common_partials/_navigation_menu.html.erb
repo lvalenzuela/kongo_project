@@ -69,7 +69,46 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><%=link_to :controller => :trainings, :action => :index do%>
-                            <i class="fa fa-angle-double-right"></i> Index
+                            <i class="fa fa-angle-double-right"></i> Listado Capacitaciones
+                            <%end%>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview <%=activate_menu_item("job_profiles", controller_name)%>">
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span>Perfiles de Trabajo</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><%=link_to :controller => :job_profiles, :action => :index do%>
+                            <i class="fa fa-angle-double-right"></i> Perfiles de Trabajo
+                            <%end%>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview <%=activate_menu_item("workers", controller_name)%>">
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span>Trabajadores</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><%=link_to :controller => :workers, :action => :index do%>
+                            <i class="fa fa-angle-double-right"></i> Listado Trabajadores
+                            <%end%>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview <%=activate_menu_item("contractors", controller_name)%>">
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span>Contratistas</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><%=link_to :controller => :contractors, :action => :index do%>
+                            <i class="fa fa-angle-double-right"></i> Listado Contratistas
                             <%end%>
                         </li>
                     </ul>

@@ -1,0 +1,92 @@
+<section class="content-header no-margin">
+    <h1>
+        Trabajadores
+        <small>Listado de Trabajadores</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="active">Listado de Trabajadores</li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title">Búsqueda de Trabajadores</h3>
+				</div>
+				<%=form_tag do%>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-6 form-group">
+							<label>Nombre</label>
+							<%=text_field_tag :worker_name, nil, :class => "form-control"%>
+						</div>
+						<div class="col-xs-6 form-group">
+							<label>Apellido</label>
+							<%=text_field_tag :worker_lastname, nil, :class => "form-control"%>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-6 form-group">
+							<label>Email</label>
+							<%=text_field_tag :worker_email, nil, :class => "form-control"%>
+						</div>
+						<div class="col-xs-6 form-group">
+							<label>Rut</label>
+							<%=text_field_tag :worker_rut, nil, :class => "form-control"%>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer clearfix">
+					<div class="pull-right">
+						<%=submit_tag "Buscar", :class => "btn btn-primary "%>
+					</div>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title">Listado de Trabajadores</h3>
+					<div class="box-tools">
+						<%=link_to "Nuevo Trabajador", {:action => :new}, {:class => "btn btn-default pull-right"}%>
+					</div>
+				</div>
+				<div class="box-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>RUT</th>
+								<th>Nombre</th>
+								<th>Email</th>
+								<th>Contratista</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if @workers.blank?%>
+							<tr>
+								<td colspan="4"> No hay datos para mostrar.</td>
+							</tr>
+							<%else%>
+								<%@workers.each do |w|%>
+								<tr>
+									<td><%=w.rut%></td>
+									<td><%=w.name%></td>
+									<td><%=w.email%></td>
+									<td><%=w.contractor_id%></td>
+								</tr>
+								<%end%>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

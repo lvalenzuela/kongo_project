@@ -1,0 +1,62 @@
+<section class="content-header no-margin">
+    <h1>
+        Trabajadores
+        <small>Nuevo Trabajador</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><%=link_to "Listado de Trabajadores", {:action => :index}%></li>
+        <li class="active">Nuevo Trabajador</li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title">Nuevo Trabajador</h3>
+				</div>
+				<%=form_for @worker do |f|%>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset-1">
+							<div class="form-group">
+								<label>Nombres</label>
+								<%=f.text_field :firstname, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Apellido Paterno</label>
+								<%=f.text_field :lastname1, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Apellido Materno</label>
+								<%=f.text_field :lastname2, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label style="display: block;">Género</label>
+								<%=f.radio_button :gender, "Masculino"%> Masculino
+								<%=f.radio_button :gender, "Femenino"%> Femenino
+							</div>
+							<div class="form-group">
+								<label>Email</label>
+								<%=f.email_field :email, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Rut</label>
+								<%=f.text_field :rut, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Contratista</label>
+								<%=f.select :contractor_id, options_for_select([nil]), {:include_blank => true}, {:class => "form-control"}%>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer clearfix">
+					<%=f.submit "Crear", :class => "btn btn-primary btn-lg pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</section>

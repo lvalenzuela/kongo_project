@@ -1,0 +1,53 @@
+<section class="content-header no-margin">
+    <h1>
+        Contratistas
+        <small>Nuevo Contratista</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><%=link_to "Listado de Contratistas", {:action => :index}%></li>
+        <li class="active">Nuevo Contratista</li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title">Nuevo Contratista</h3>
+				</div>
+				<%=form_for @contractor do |f|%>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset-1">
+							<div class="form-group">
+								<label>Nombre</label>
+								<%=f.text_field :commercial_name, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Razón Social</label>
+								<%=f.text_field :business_name, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Rut</label>
+								<%=f.text_field :rut, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Email</label>
+								<%=f.email_field :email, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Observaciones</label>
+								<%=f.text_field :observations, :class => "form-control"%>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer clearfix">
+					<%=f.submit "Crear", :class => "btn btn-primary btn-lg pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</section>
