@@ -1,0 +1,24 @@
+<div class="form-box" id="login-box">
+	<div class="header">Kongo Login</div>
+		<%=form_tag do %>
+			<div class="body bg-gray">
+				<div class="form-group">
+					<%=text_field_tag "username", nil, :class => "form-control", placeholder: "Nombre de Usuario"%>
+				</div>
+				<div class="form-group">
+					<%=password_field_tag "password", nil, :class => "form-control", placeholder: "Password"%>
+				</div>
+				<div class="form-group">
+					<%=check_box_tag :remember_me%> Remember Me
+				</div>
+			</div>
+			<div class="footer">
+				<button type="submit" class="btn bg-olive btn-block">Login</button>
+			</div>
+		<%end%>
+	<div class="margin text-center">
+		<%if flash[:notice]%>
+			<span><%=flash[:notice]%></span>
+		<%end%>
+	</div>
+</div>
