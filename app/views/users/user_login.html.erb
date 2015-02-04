@@ -1,6 +1,6 @@
 <div class="form-box" id="login-box">
 	<div class="header">Kongo Login</div>
-		<%=form_tag do %>
+		<%=form_tag :action => :login do %>
 			<div class="body bg-gray">
 				<div class="form-group">
 					<%=text_field_tag "username", nil, :class => "form-control", placeholder: "Nombre de Usuario"%>
@@ -16,7 +16,7 @@
 				<button type="submit" class="btn bg-olive btn-block">Login</button>
 			</div>
 		<%end%>
-	<div class="margin text-center">
+	<div class="margin text-center" style="color:#FFF;">
 		<%if flash[:notice]%>
 			<span><%=flash[:notice]%></span>
 		<%end%>

@@ -13,9 +13,10 @@
  *= require_tree .
  *= require_self
  *= require AdminLTE
- *= require bootstrap.min.css.scss
- *= require bootstrap3-wysihtml5.min
  *= require bootstrap-timepicker.min
+ *= require bootstrap.min
+ *= require bootstrap3-wysihtml5.min
  *= require dataTables.bootstrap
- *= require ionicons.min.css.scss
+ *= require fullcalendar
+ *= require ionicons.min
  */
