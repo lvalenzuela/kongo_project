@@ -46,3 +46,5 @@ group :development, :test do
   gem 'spring'
 end
 
+#font-awesome
+gem 'font-awesome-rails'

@@ -25,6 +25,11 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def logout
+		cookies.delete(:auth_token)
+		redirect_to :action => :user_login
+	end
+
 	def new
 		@user = User.new()
 	end
