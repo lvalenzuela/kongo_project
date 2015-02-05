@@ -82,7 +82,7 @@
 				<div class="box-header">
 					<h3 class="box-title">Servicios Asociados</h3>
 					<div class="box-tools">
-						<%=link_to "Asociar Servicio", {}, {:class => "btn btn-default btn-sm pull-right"}%>
+						<%=link_to "Asociar Servicio", {:action => :new_service, :params => {:id => @contractor.id}}, {:class => "btn btn-default btn-sm pull-right"}%>
 					</div>
 				</div>
 				<div class="box-body">
@@ -102,9 +102,9 @@
 							<%else%>
 								<%@contractor_services.each do |cs|%>
 								<tr>
-									<td><%=cs.id%></td>
-									<td><%=cs.start_date%></td>
-									<td><%=cs.end_date%></td>
+									<td><%=service_name(cs.id)%></td>
+									<td><%=l(cs.service_start_date, :format => :default)%></td>
+									<td><%=l(cs.service_end_date, :format => :default)%></td>
 								</tr>
 								<%end%>
 							<%end%>
@@ -120,16 +120,17 @@
 				<div class="box-header">
 					<h3 class="box-title">Trabajadores</h3>
 					<div class="box-tools">
-						<%=link_to "Registrar Trabajadores", {}, {:class => "btn btn-default btn-sm pull-right"}%>
+						<%=link_to "Registrar Trabajadores", {:action => :new_worker, :params => {:id => @contractor.id}}, {:class => "btn btn-default btn-sm pull-right"}%>
 					</div>
 				</div>
 				<div class="box-body">
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>Rut</th>
-								<th>Nombre</th>
-								<th>Apellido Paterno</th>
+								<th><%=t(:idnumber)%></th>
+								<th><%=t(:name)%></th>
+								<th><%=t(:lastname)%></th>
+								<th><%=t(:gender)%></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -143,6 +144,7 @@
 									<td><%=cw.rut%></td>
 									<td><%=cw.firstname%></td>
 									<td><%=cw.lastname1%></td>
+									<td><%=cw.gender%></td>
 								</tr>
 								<%end%>
 							<%end%>

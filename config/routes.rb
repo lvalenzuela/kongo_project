@@ -37,6 +37,13 @@ Rails.application.routes.draw do
     resources :contractors do 
       collection do 
         get :index
+        get :new_service
+        post :bind_service
+        get :new_worker
+        post :create_worker
+        get :bulk_new_workers
+        get :workers_file_example
+        post :bulk_create_workers
       end
     end
 

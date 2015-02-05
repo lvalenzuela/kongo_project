@@ -19,7 +19,7 @@
 //= require bootstrap3-wysihtml5.all.min
 //= require app
 //= require application
-//= require bootstrap-timepicker
+//= require bootstrap-datepicker
 //= require xdataTables.bootstrap
 //= require jquery.dataTables
 //= require icheck.min

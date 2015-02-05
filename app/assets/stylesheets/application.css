@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  *= require AdminLTE
- *= require bootstrap-timepicker.min
+ *= require bootstrap-datepicker
  *= require bootstrap.min
  *= require bootstrap3-wysihtml5.min
  *= require dataTables.bootstrap

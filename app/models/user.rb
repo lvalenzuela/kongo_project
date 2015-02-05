@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	validates_confirmation_of :password, :email
 	validates :firstname, :lastname, :email, :password, :presence => true
+	validates :email, :uniqueness => true
 	before_create :generate_defaults
 
 	def generate_defaults

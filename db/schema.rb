@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205043718) do
+ActiveRecord::Schema.define(version: 20150205145035) do
+
+  create_table "contractor_services", force: :cascade do |t|
+    t.integer  "contractor_id",      limit: 4
+    t.integer  "service_id",         limit: 4
+    t.date     "service_start_date"
+    t.date     "service_end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contractor_statuses", force: :cascade do |t|
     t.string   "name",        limit: 255

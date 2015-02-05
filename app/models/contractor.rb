@@ -1,5 +1,7 @@
 class Contractor < ActiveRecord::Base
 	has_one :contractor_status
+	has_many :services, through: :contractor_services
+	has_many :workers
 	validates :commercial_name, :business_name, :rut, :presence => true
 	before_create :set_defaults
 

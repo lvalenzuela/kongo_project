@@ -51,3 +51,6 @@ gem 'font-awesome-rails'
 
 #jquery con turbolinks
 gem 'jquery-turbolinks'
+
+#datepicker
+gem 'bootstrap-datepicker-rails'

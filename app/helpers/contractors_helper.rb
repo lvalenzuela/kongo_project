@@ -7,4 +7,13 @@ module ContractorsHelper
 			return status.name
 		end
 	end
+
+	def service_name(id)
+		service = Service.find(id)
+		if service.blank?
+			return "-"
+		else
+			return service.name
+		end
+	end
 end
