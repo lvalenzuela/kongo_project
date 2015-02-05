@@ -47,7 +47,7 @@
 							</div>
 							<div class="form-group">
 								<label>Contratista</label>
-								<%=f.select :contractor_id, options_for_select([nil]), {:include_blank => true}, {:class => "form-control"}%>
+								<%=f.select :contractor_id, options_for_select(@contractors.collect{|c| [c.business_name, c.id]}), {:include_blank => true}, {:class => "form-control"}%>
 							</div>
 						</div>
 					</div>

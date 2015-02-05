@@ -6,6 +6,7 @@ class WorkersController < ApplicationController
 
 	def new
 		@worker = Worker.new()
+		@contractors = Contractor.all()
 	end
 
 	def create

@@ -1,0 +1,27 @@
+es:
+  #generales
+  hello: "Hola Mundo"
+  name: "Nombre"
+  search: "Buscar"
+  create: "Crear"
+  edit: "Editar"
+  delete: "Borrar"
+  idnumber: "Rut"
+  observations: "Observaciones"
+  country: "País"
+  region: "Región"
+  commune: "Comuna"
+  address: "Dirección"
+  contact_email: "Email de Contacto"
+  status: "Estado"
+  start_date: "Fecha de Inicio"
+  end_date: "Fecha de Término"
+  submit_error_msg: "no permitieron llevar a cabo la operacion"
+  #Capacitaciones
+  training: "Capacitación"
+  new_training: "Nueva Capacitación"
+  #Contratistas
+  new_contractor: "Nuevo Contratista"
+  contractor: "Contratista"
+  business_name: "Razón Social"
+

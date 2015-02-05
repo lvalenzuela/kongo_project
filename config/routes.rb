@@ -3,38 +3,47 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  get "/:locale" => "trainings#index"
   root 'trainings#index'
 
-  resources :users do
-    collection do 
-      get :user_login
-      post :login
-      get :profile
-      get :logout
+  scope "(:locale)", locale: /es|en/ do
+    resources :users do
+      collection do 
+        get :user_login
+        post :login
+        get :profile
+        get :logout
+      end
     end
-  end
 
-  resources :trainings do
-    collection do
-      get :index
+    resources :trainings do
+      collection do
+        get :index
+      end
     end
-  end
 
-  resources :job_profiles do
-    collection do
-      get :index
+    resources :job_profiles do
+      collection do
+        get :index
+      end
     end
-  end
 
-  resources :workers do 
-    collection do
-      get :index
+    resources :workers do 
+      collection do
+        get :index
+      end
     end
-  end
 
-  resources :contractors do 
-    collection do 
-      get :index
+    resources :contractors do 
+      collection do 
+        get :index
+      end
+    end
+
+    resources :services do
+      collection do
+        get :index
+      end
     end
   end
 

@@ -113,6 +113,19 @@
                         </li>
                     </ul>
                 </li>
+                <li class="treeview <%=activate_menu_item("services", controller_name)%>">
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o"></i>
+                        <span>Servicios</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><%=link_to :controller => :services, :action => :index do%>
+                            <i class="fa fa-angle-double-right"></i> Listado Servicios
+                            <%end%>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </section>
     </aside>

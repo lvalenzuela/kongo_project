@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204203234) do
+ActiveRecord::Schema.define(version: 20150205043718) do
+
+  create_table "contractor_statuses", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contractors", force: :cascade do |t|
     t.string   "commercial_name", limit: 255
@@ -32,6 +39,13 @@ ActiveRecord::Schema.define(version: 20150204203234) do
   end
 
   create_table "job_profiles", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "services", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 255
     t.datetime "created_at"
@@ -82,7 +96,7 @@ ActiveRecord::Schema.define(version: 20150204203234) do
     t.string   "department",   limit: 255
     t.string   "address",      limit: 255
     t.string   "city",         limit: 255
-    t.integer  "lang_id",      limit: 4
+    t.string   "lang",         limit: 255,   default: "0"
     t.date     "first_access"
     t.date     "last_access"
     t.text     "description",  limit: 65535

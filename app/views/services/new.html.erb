@@ -1,0 +1,51 @@
+<section class="content-header no-margin">
+    <h1>
+        Servicio
+        <small>Nuevo Servicio</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><%=link_to "Listado de Servicios", {:action => :index}%></li>
+        <li class="active">Nuevo Servicio</li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title">Nuevo Servicio</h3>
+				</div>
+				<%=form_for @service do |f|%>
+				<div class="box-body">
+                    <%if @service.errors.any?%>
+                        <div class="callout callout-warning">
+                            <h4><%=pluralize(@service.errors.count,"error")%> no permitieron llevar a cabo la operacion</h4>
+                            <ul>
+                                <%@service.errors.full_messages.each do |msg|%>
+                                    <li><%= msg %></li>
+                                <%end%>
+                            </ul>
+                        </div>
+                    <%end%>
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset-1">
+							<div class="form-group">
+								<label>Nombre</label>
+								<%=f.text_field :name, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Descripción</label>
+								<%=f.text_field :description, :class => "form-control"%>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer clearfix">
+					<%=f.submit "Crear", :class => "btn btn-primary btn-lg pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</section>

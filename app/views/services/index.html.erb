@@ -1,10 +1,10 @@
 <section class="content-header no-margin">
     <h1>
-        Contratistas
-        <small>Listado de Contratistas</small>
+        Servicios
+        <small>Listado de Servicios</small>
     </h1>
     <ol class="breadcrumb">
-        <li class="active">Listado de Contratistas</li>
+        <li class="active">Listado de Servicios</li>
     </ol>
 </section>
 
@@ -13,28 +13,18 @@
 		<div class="col-xs-10 col-xs-offset-1">
 			<div class="box box-info">
 				<div class="box-header">
-					<h3 class="box-title">Búsqueda de Contratistas</h3>
+					<h3 class="box-title">Búsqueda de Servicios</h3>
 				</div>
 				<%=form_tag do%>
 				<div class="box-body">
 					<div class="row">
 						<div class="col-xs-6 form-group">
 							<label>Nombre</label>
-							<%=text_field_tag :contractor_commercial_name, nil, :class => "form-control"%>
+							<%=text_field_tag :service_name, nil, :class => "form-control"%>
 						</div>
 						<div class="col-xs-6 form-group">
-							<label>Razón Social</label>
-							<%=text_field_tag :contractor_business_name, nil, :class => "form-control"%>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xs-6 form-group">
-							<label>Email</label>
-							<%=text_field_tag :contractor_email, nil, :class => "form-control"%>
-						</div>
-						<div class="col-xs-6 form-group">
-							<label>Rut</label>
-							<%=text_field_tag :contractor_rut, nil, :class => "form-control"%>
+							<label>Número de Folio</label>
+							<%=text_field_tag :service_contract_id, nil, :class => "form-control"%>
 						</div>
 					</div>
 				</div>
@@ -51,33 +41,29 @@
 		<div class="col-xs-12">
 			<div class="box box-info">
 				<div class="box-header">
-					<h3 class="box-title">Listado de Contratistas</h3>
+					<h3 class="box-title">Listado de Servicios</h3>
 					<div class="box-tools">
-						<%=link_to "Nuevo Contratista", {:action => :new}, {:class => "btn btn-default pull-right"}%>
+						<%=link_to "Nuevo Servicio", {:action => :new}, {:class => "btn btn-default pull-right"}%>
 					</div>
 				</div>
 				<div class="box-body">
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>RUT</th>
 								<th>Nombre</th>
-								<th>Razón Social</th>
-								<th>Email</th>
+								<th>Descripcion</th>
 							</tr>
 						</thead>
 						<tbody>
-							<%if @contractors.blank?%>
+							<%if @services.blank?%>
 							<tr>
 								<td colspan="4"> No hay datos para mostrar.</td>
 							</tr>
 							<%else%>
-								<%@contractors.each do |c|%>
+								<%@services.each do |s|%>
 								<tr>
-									<td><%=link_to c.rut, contractor_path(c.id)%></td>
-									<td><%=c.commercial_name%></td>
-									<td><%=c.business_name%></td>
-									<td><%=c.email%></td>
+									<td><%=s.name%></td>
+									<td><%=s.description.truncate(40)%></td>
 								</tr>
 								<%end%>
 							<%end%>

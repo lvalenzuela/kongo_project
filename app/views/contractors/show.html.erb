@@ -1,0 +1,157 @@
+<section class="content-header no-margin">
+    <h1>
+        Contratistas
+        <small><%=@contractor.commercial_name%></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><%=link_to "Listado de Contratistas", :action => :index%></li>
+        <li class="active">Detalles de Contratista</li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title">Datos Generales - <%=@contractor.commercial_name%></h3>
+					<div class="box-tools">
+						<%=link_to "Editar Contratista", edit_contractor_path(@contractor.id), {:class => "btn btn-default btn-sm pull-right"}%>
+					</div>
+				</div>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-6">
+							<table class="table table-striped">
+								<tr>
+									<th>Nombre Comercial</th>
+									<td><%=@contractor.commercial_name%></td>
+								</tr>
+								<tr>
+									<th>Razon Social</th>
+									<td><%=@contractor.business_name%></td>
+								</tr>
+								<tr>
+									<th>Rut</th>
+									<td><%=@contractor.rut%></td>
+								</tr>
+								<tr>
+									<th>Email Contacto</th>
+									<td><%=@contractor.email%></td>
+								</tr>
+								<tr>
+									<th>Observaciones</th>
+									<td><%=@contractor.observations%></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-xs-6">
+							<table class="table table-striped">
+								<tr>
+									<th>País</th>
+									<td><%=@contractor.country%></td>
+								</tr>
+								<tr>
+									<th>Región</th>
+									<td><%=@contractor.region%></td>
+								</tr>
+								<tr>
+									<th>Comuna</th>
+									<td><%=@contractor.comuna%></td>
+								</tr>
+								<tr>
+									<th>Direccion</th>
+									<td><%=@contractor.address%></td>
+								</tr>
+								<tr>
+									<th>Estado de Contratista</th>
+									<td><%=contractor_status(@contractor.status_id)%></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title">Servicios Asociados</h3>
+					<div class="box-tools">
+						<%=link_to "Asociar Servicio", {}, {:class => "btn btn-default btn-sm pull-right"}%>
+					</div>
+				</div>
+				<div class="box-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Servicio</th>
+								<th>Fecha Inicio</th>
+								<th>Fecha Término</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if @contractor_services.blank?%>
+								<tr>
+									<td colspan="3">No hay datos para mostrar</td>
+								</tr>
+							<%else%>
+								<%@contractor_services.each do |cs|%>
+								<tr>
+									<td><%=cs.id%></td>
+									<td><%=cs.start_date%></td>
+									<td><%=cs.end_date%></td>
+								</tr>
+								<%end%>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-6">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title">Trabajadores</h3>
+					<div class="box-tools">
+						<%=link_to "Registrar Trabajadores", {}, {:class => "btn btn-default btn-sm pull-right"}%>
+					</div>
+				</div>
+				<div class="box-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Rut</th>
+								<th>Nombre</th>
+								<th>Apellido Paterno</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if @contractor_workers.blank?%>
+								<tr>
+									<td colspan="3">No hay datos para mostrar.</td>
+								</tr>
+							<%else%>
+								<%@contractor_workers.each do |cw|%>
+								<tr>
+									<td><%=cw.rut%></td>
+									<td><%=cw.firstname%></td>
+									<td><%=cw.lastname1%></td>
+								</tr>
+								<%end%>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
