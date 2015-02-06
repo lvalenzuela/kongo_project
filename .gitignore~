@@ -11,3 +11,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+#ignorar archivos con informacion sensible
+/config/database.yml
