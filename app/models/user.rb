@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
 	validates :firstname, :lastname, :email, :idnumber, :role_id, :password, :presence => true
 	validates :email, :idnumber, :uniqueness => true
 	before_create :generate_defaults
+	before_update :update_password
+
+	def update_password
+		self.password = BCrypt::Password.create(self.password)
+	end
 
 	def generate_defaults
 		self.name = self.firstname+" "+self.lastname

@@ -20,10 +20,12 @@ es:
       - month
       - year
   #generales
-  hello: "Hola Mundo"
+  hello: "Hola"
   name: "Nombre"
   firstname: "Nombre"
   lastname: "Apellido"
+  lastname1: "Apellido Paterno"
+  lastname2: "Apellido Materno"
   gender: "Género"
   search: "Buscar"
   create: "Crear"
@@ -43,10 +45,28 @@ es:
   no_data: "No hay datos para mostrar"
   save: "Guardar"
   #Capacitaciones
+  trainings: "Capacitaciones"
+  trainings_list: "Listado de Capacitaciones"
   training: "Capacitación"
   new_training: "Nueva Capacitación"
+  edit_training: "Editar Capacitación"
+  edit_trainings: "Editar Capacitaciones"
   #Contratistas
   new_contractor: "Nuevo Contratista"
+  contractors: "Contratistas"
+  contractors_list: "Listado de Contratistas"
   contractor: "Contratista"
   business_name: "Razón Social"
+  edit_contractor: "Editar Contratista"
+  #Usuarios
+  user: "Usuario"
+  users: "Usuarios"
+  users_list: "Listado de Usuarios"
+  new_user: "Nuevo Usuario"
+  edit_user: "Editar Usuario"
+  #Perfiles de Trabajo
+  job_profile: "Perfil de Trabajo"
+  job_profiles_list: "Listado de Perfiles de Trabajo"
+  new_job_profile: "Nuevo Perfil de Trabajo"
+  edit_job_profile: "Editar Perfil de Trabajo"
 

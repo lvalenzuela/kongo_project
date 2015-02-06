@@ -44,6 +44,7 @@ Rails.application.routes.draw do
         get :new_worker
         post :create_worker
         get :bulk_new_workers
+        post :workers_file_config
         get :workers_file_example
         post :bulk_create_workers
       end

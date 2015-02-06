@@ -17,7 +17,7 @@
 				<div class="box-header">
 					<h3 class="box-title"><%=t(:new_workers_file)%></h3>
 				</div>
-				<%=form_tag bulk_create_workers_contractors_path, :multipart => true do%>
+				<%=form_tag workers_file_config_contractors_path, :multipart => true do%>
 				<%=hidden_field_tag :contractor_id, @contractor.id%>
 				<div class="box-body">
 					<div class="row">

@@ -59,7 +59,11 @@
 						</div>
 						<div class="form-group col-xs-6">
 							<label><%=t(:role)%></label>
-							<%=f.select :role_id, options_for_select(@user_roles.collect{|r| [r.name,r.id]},@user.role_id), {}, {:class => "form-control"}%>
+							<%=f.select :role_id, options_for_select(@user_roles.collect{|r| [r.name,r.id]}), {}, {:class => "form-control"}%>
+						</div>
+						<div class="form-group col-xs-6">
+							<label><%=t(:language)%></label>
+							<%=f.select :lang, options_for_select([["Español","es"],["English","en"]], "es"), {}, {:class => "form-control"}%>
 						</div>
 					</div>
 				</div>

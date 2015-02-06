@@ -34,10 +34,10 @@
                         </li>
                         <li class="user-footer">
                             <div class="pull-left">
-                                <%=link_to "User Profile", {:controller => :users, :action => :profile}, {:class => "btn btn-default btn-flat"}%>
+                                <%=link_to t(:user_profile), {:controller => :users, :action => :profile}, {:class => "btn btn-default btn-flat"}%>
                             </div>
                             <div class="pull-right">
-                                <%=link_to "Logout", {:controller => :users, :action => :logout}, {:class => "btn btn-default btn-flat"}%>
+                                <%=link_to t(:logout), {:controller => :users, :action => :logout}, {:class => "btn btn-default btn-flat"}%>
                             </div>
                         </li>
                     </ul>
@@ -55,7 +55,7 @@
                 <div class="pull-left image">
                 </div>
                 <div class="pull-left info">
-                    <p>Hola, <%=@current_user.name%></p>
+                    <p><%=t(:hello)%>, <%=@current_user.name%></p>
 
                     <i class="fa fa-circle text-success"></i> Online
                 </div>
@@ -81,12 +81,16 @@
                 <li class="treeview <%=activate_menu_item("trainings", controller_name)%>">
                     <a href="#">
                         <i class="fa fa-bar-chart-o"></i>
-                        <span>Capacitaciones</span>
+                        <span><%=t(:trainings)%></span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li><%=link_to :controller => :trainings, :action => :index do%>
-                            <i class="fa fa-angle-double-right"></i> Listado Capacitaciones
+                            <i class="fa fa-angle-double-right"></i> <%=t(:trainings_list)%>
+                            <%end%>
+                        </li>
+                        <li><%=link_to :controller => :trainings, :action => :new do%>
+                            <i class="fa fa-angle-double-right"></i> <%=t(:new_training)%>
                             <%end%>
                         </li>
                     </ul>
@@ -94,12 +98,16 @@
                 <li class="treeview <%=activate_menu_item("job_profiles", controller_name)%>">
                     <a href="#">
                         <i class="fa fa-bar-chart-o"></i>
-                        <span>Perfiles de Trabajo</span>
+                        <span><%=t(:job_profiles)%></span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li><%=link_to :controller => :job_profiles, :action => :index do%>
-                            <i class="fa fa-angle-double-right"></i> Perfiles de Trabajo
+                            <i class="fa fa-angle-double-right"></i> <%=t(:job_profiles_list)%>
+                            <%end%>
+                        </li>
+                        <li><%=link_to :controller => :job_profiles, :action => :new do%>
+                            <i class="fa fa-angle-double-right"></i> <%=t(:new_job_profile)%>
                             <%end%>
                         </li>
                     </ul>
@@ -107,12 +115,16 @@
                 <li class="treeview <%=activate_menu_item("workers", controller_name)%>">
                     <a href="#">
                         <i class="fa fa-bar-chart-o"></i>
-                        <span>Trabajadores</span>
+                        <span><%=t(:workers)%></span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li><%=link_to :controller => :workers, :action => :index do%>
-                            <i class="fa fa-angle-double-right"></i> Listado Trabajadores
+                            <i class="fa fa-angle-double-right"></i> <%=t(:workers_list)%>
+                            <%end%>
+                        </li>
+                        <li><%=link_to :controller => :workers, :action => :new do%>
+                            <i class="fa fa-angle-double-right"></i> <%=t(:new_worker)%>
                             <%end%>
                         </li>
                     </ul>
@@ -120,12 +132,16 @@
                 <li class="treeview <%=activate_menu_item("contractors", controller_name)%>">
                     <a href="#">
                         <i class="fa fa-bar-chart-o"></i>
-                        <span>Contratistas</span>
+                        <span><%=t(:contractors)%></span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li><%=link_to :controller => :contractors, :action => :index do%>
-                            <i class="fa fa-angle-double-right"></i> Listado Contratistas
+                            <i class="fa fa-angle-double-right"></i> <%=t(:contractors_list)%>
+                            <%end%>
+                        </li>
+                        <li><%=link_to :controller => :contractors, :action => :new do%>
+                            <i class="fa fa-angle-double-right"></i> <%=t(:new_contractor)%>
                             <%end%>
                         </li>
                     </ul>
@@ -133,12 +149,16 @@
                 <li class="treeview <%=activate_menu_item("services", controller_name)%>">
                     <a href="#">
                         <i class="fa fa-bar-chart-o"></i>
-                        <span>Servicios</span>
+                        <span><%=t(:services)%></span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li><%=link_to :controller => :services, :action => :index do%>
-                            <i class="fa fa-angle-double-right"></i> Listado Servicios
+                            <i class="fa fa-angle-double-right"></i> <%=t(:services_list)%>
+                            <%end%>
+                        </li>
+                        <li><%=link_to :controller => :services, :action => :new do%>
+                            <i class="fa fa-angle-double-right"></i> <%=t(:new_service)%>
                             <%end%>
                         </li>
                     </ul>
