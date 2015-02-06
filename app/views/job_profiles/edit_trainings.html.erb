@@ -1,0 +1,42 @@
+<section class="content-header no-margin">
+    <h1>
+        <%=t(:job_profile_trainings)%>
+        <small><%=@job_profile.name%></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><%=link_to t(:job_profile_list), :action => :index%></li>
+        <li><%=link_to t(:job_profile_details), job_profile_path(@job_profile.id)%></li>
+        <li class="active"><%=t(:job_profile_trainings)%></li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=t(:job_profile_prerequisites)%></h3>
+				</div>
+				<%=form_tag save_trainings_job_profiles_path do %>
+				<%=hidden_field_tag :job_profile_id, @job_profile.id%>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset-1">
+							<%@trainings.each do |t|%>
+							<div class="col-xs-6">
+								<div class="form-group">
+									<%=check_box_tag "trainings[]", t.id, @job_profile_trainings.include?(t.id) ? true : false%> <label><%=t.name%></label>
+								</div>
+							</div>
+							<%end%>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer clearfix">
+					<%=submit_tag "#{t(:save)}", :class => "btn btn-primary pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</section>

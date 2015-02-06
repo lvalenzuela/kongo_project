@@ -2,6 +2,7 @@ class WorkersController < ApplicationController
 	before_filter :set_current_user
 
 	def index
+		@workers = Worker.all()
 	end
 
 	def new

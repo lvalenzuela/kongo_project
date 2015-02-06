@@ -20,7 +20,6 @@
 //= require app
 //= require application
 //= require bootstrap-datepicker
-//= require xdataTables.bootstrap
 //= require jquery.dataTables
 //= require icheck.min
 //= require wysihtml5_load

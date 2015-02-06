@@ -1,1 +1,74 @@
-<%=link_to "root", root_url	%>
+<section class="content-header no-margin">
+    <h1>
+        <%=t(:job_profile)%>
+        <small><%=t(:job_profile_list)%></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li class="active"><%=t(:job_profile_list)%></li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=t(:job_profile_search)%></h3>
+				</div>
+				<%=form_tag do%>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-6 form-group">
+							<label>Nombre</label>
+							<%=text_field_tag :job_profile_name, nil, :class => "form-control"%>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer clearfix">
+					<div class="pull-right">
+						<%=submit_tag "Buscar", :class => "btn btn-primary "%>
+					</div>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=t(:job_profile_list)%></h3>
+					<div class="box-tools">
+						<%=link_to t(:new_job_profile), {:action => :new}, {:class => "btn btn-default pull-right"}%>
+					</div>
+				</div>
+				<div class="box-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Descripcion</th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if @job_profiles.blank?%>
+							<tr>
+								<td colspan="4"><%=t(:no_data)%></td>
+							</tr>
+							<%else%>
+								<%@job_profiles.each do |j|%>
+								<tr>
+									<td><%=link_to j.name, job_profile_path(j.id)%></td>
+									<td><%=j.description.truncate(40)%></td>
+								</tr>
+								<%end%>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

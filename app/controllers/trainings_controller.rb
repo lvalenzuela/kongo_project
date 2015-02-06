@@ -3,6 +3,7 @@ class TrainingsController < ApplicationController
 	before_filter :set_current_user
 
 	def index
+		@trainings = Training.all()
 	end
 
 	def new

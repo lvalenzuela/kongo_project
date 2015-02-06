@@ -1,0 +1,63 @@
+<section class="content-header no-margin">
+    <h1>
+        <%=t(:users)%>
+        <small><%=@user.name%></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><%=link_to t(:users_list), :action => :index%></li>
+        <li class="active"><%=t(:user_details)%></li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=t(:general_data)%> - <%=@user.name%></h3>
+					<div class="box-tools">
+						<%=link_to t(:edit_user), edit_user_path(@user.id), {:class => "btn btn-default btn-sm pull-right"}%>
+					</div>
+				</div>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-6">
+							<table class="table table-striped">
+								<tr>
+									<th><%=t(:name)%></th>
+									<td><%=@user.firstname%></td>
+								</tr>
+								<tr>
+									<th><%=t(:lastname)%></th>
+									<td><%=@user.lastname%></td>
+								</tr>
+								<tr>
+									<th><%=t(:idnumber)%></th>
+									<td><%=@user.idnumber%></td>
+								</tr>
+								<tr>
+									<th><%=t(:email)%></th>
+									<td><%=@user.email%></td>
+								</tr>
+								<tr>
+									<th><%=t(:username)%></th>
+									<td><%=@user.username%></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-xs-6">
+							<table class="table table-striped">
+								<tr>
+									<th><%=t(:language)%></th>
+									<td><%=@user.lang%></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

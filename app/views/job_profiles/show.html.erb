@@ -1,0 +1,81 @@
+<section class="content-header no-margin">
+    <h1>
+        <%=t(:job_profile)%>
+        <small><%=@job_profile.name%></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><%=link_to t(:job_profile_list), :action => :index%></li>
+        <li class="active"><%=t(:job_profile_details)%></li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=t(:general_data)%> - <%=@job_profile.name%></h3>
+					<div class="box-tools">
+						<%=link_to t(:edit_job_profile), edit_job_profile_path(@job_profile.id), {:class => "btn btn-default btn-sm pull-right"}%>
+					</div>
+				</div>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<table class="table table-striped">
+								<tr>
+									<th><%=t(:job_profile_name)%></th>
+									<td><%=@job_profile.name%></td>
+								</tr>
+								<tr>
+									<th><%=t(:job_profile_description)%></th>
+									<td><%=@job_profile.description%></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=t(:associated_trainings)%></h3>
+					<div class="box-tools">
+						<%=link_to t(:edit_traininigs), {:action => :edit_trainings, :params => {:id => @job_profile.id}}, {:class => "btn btn-default btn-sm pull-right"}%>
+					</div>
+				</div>
+				<div class="box-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th><%=t(:training)%></th>
+								<th><%=t(:validity_period)%></th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if @job_profile_trainings.blank?%>
+								<tr>
+									<td colspan="2"><%=t(:no_data)%></td>
+								</tr>
+							<%else%>
+								<%@job_profile_trainings.each do |jt|%>
+								<tr>
+									<td><%=jt.name%></td>
+									<td><%=jt.validity_period%></td>
+								</tr>
+								<%end%>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

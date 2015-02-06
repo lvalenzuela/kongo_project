@@ -60,24 +60,24 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>RUT</th>
-								<th>Nombre</th>
-								<th>Email</th>
-								<th>Contratista</th>
+								<th><%=t(:idnumber)%></th>
+								<th><%=t(:firstname)%></th>
+								<th><%=t(:lastname)%></th>
+								<th><%=t(:contractor)%></th>
 							</tr>
 						</thead>
 						<tbody>
 							<%if @workers.blank?%>
 							<tr>
-								<td colspan="4"> No hay datos para mostrar.</td>
+								<td colspan="4"> <%=t(:no_data)%></td>
 							</tr>
 							<%else%>
 								<%@workers.each do |w|%>
 								<tr>
 									<td><%=w.rut%></td>
-									<td><%=w.name%></td>
-									<td><%=w.email%></td>
-									<td><%=w.contractor_id%></td>
+									<td><%=w.firstname%></td>
+									<td><%=w.lastname1%></td>
+									<td><%=contractor_name(w.contractor_id)%></td>
 								</tr>
 								<%end%>
 							<%end%>

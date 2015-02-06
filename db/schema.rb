@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205145035) do
+ActiveRecord::Schema.define(version: 20150206045232) do
 
   create_table "contractor_services", force: :cascade do |t|
     t.integer  "contractor_id",      limit: 4
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 20150205145035) do
     t.integer  "region",          limit: 4
     t.integer  "comuna",          limit: 4
     t.integer  "country",         limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "job_profile_trainings", force: :cascade do |t|
+    t.integer  "job_profile_id", limit: 4
+    t.integer  "training_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -90,6 +97,14 @@ ActiveRecord::Schema.define(version: 20150205145035) do
     t.datetime "updated_at"
   end
 
+  create_table "user_roles", force: :cascade do |t|
+    t.string   "name",           limit: 255
+    t.string   "description",    limit: 255
+    t.integer  "role_hierarchy", limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "username",     limit: 255
     t.string   "password",     limit: 255
@@ -98,6 +113,7 @@ ActiveRecord::Schema.define(version: 20150205145035) do
     t.string   "lastname",     limit: 255
     t.string   "name",         limit: 255
     t.string   "email",        limit: 255
+    t.integer  "role_id",      limit: 4
     t.string   "phone1",       limit: 255
     t.string   "phone2",       limit: 255
     t.string   "auth_token",   limit: 255

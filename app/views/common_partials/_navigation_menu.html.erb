@@ -64,6 +64,23 @@
                 <li class="treeview <%=activate_menu_item("trainings", controller_name)%>">
                     <a href="#">
                         <i class="fa fa-bar-chart-o"></i>
+                        <span><%=t(:users)%></span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><%=link_to :controller => :users, :action => :index do%>
+                            <i class="fa fa-angle-double-right"></i> <%=t(:users_list)%>
+                            <%end%>
+                        </li>
+                        <li><%=link_to :controller => :users, :action => :new do%>
+                            <i class="fa fa-angle-double-right"></i> <%=t(:new_user)%>
+                            <%end%>
+                        </li>
+                    </ul>
+                </li>
+                <li class="treeview <%=activate_menu_item("trainings", controller_name)%>">
+                    <a href="#">
+                        <i class="fa fa-bar-chart-o"></i>
                         <span>Capacitaciones</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>

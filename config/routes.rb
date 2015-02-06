@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     resources :job_profiles do
       collection do
         get :index
+        get :edit_trainings
+        post :save_trainings
       end
     end
 

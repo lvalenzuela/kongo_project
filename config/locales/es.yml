@@ -22,6 +22,7 @@ es:
   #generales
   hello: "Hola Mundo"
   name: "Nombre"
+  firstname: "Nombre"
   lastname: "Apellido"
   gender: "Género"
   search: "Buscar"
@@ -39,6 +40,8 @@ es:
   start_date: "Fecha de Inicio"
   end_date: "Fecha de Término"
   submit_error_msg: "no permitieron llevar a cabo la operacion"
+  no_data: "No hay datos para mostrar"
+  save: "Guardar"
   #Capacitaciones
   training: "Capacitación"
   new_training: "Nueva Capacitación"

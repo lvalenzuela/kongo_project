@@ -20,7 +20,7 @@
 				<div class="box-body">
                     <%if @service.errors.any?%>
                         <div class="callout callout-warning">
-                            <h4><%=pluralize(@service.errors.count,"error")%> no permitieron llevar a cabo la operacion</h4>
+                            <h4><%=pluralize(@service.errors.count,"error")%> <%=t(:submit_error_msg)%></h4>
                             <ul>
                                 <%@service.errors.full_messages.each do |msg|%>
                                     <li><%= msg %></li>
