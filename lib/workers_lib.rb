@@ -36,4 +36,12 @@ module WorkersLib
 			return counter
 		end
 	end
+	
+	def file_column_exists?(row,file_attribute)
+		if file_attribute.blank?
+			return nil
+		else
+			return row[file_attribute.to_i]
+		end
+	end
 end

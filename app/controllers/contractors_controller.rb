@@ -116,14 +116,6 @@ class ContractorsController < ApplicationController
 
 	private
 
-	def file_column_exists?(row,file_attribute)
-		if file_attribute.blank?
-			return nil
-		else
-			return row[file_attribute.to_i]
-		end
-	end
-
 	def contractor_service_params
 		params.require(:contractor_service).permit(:contractor_id, :service_id, :service_start_date, :service_end_date)
 	end
