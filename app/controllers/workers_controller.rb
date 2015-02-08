@@ -5,6 +5,20 @@ class WorkersController < ApplicationController
 		@workers = Worker.all()
 	end
 
+	def search
+		@workers = Worker.where("firstname like ?
+								or lastname1 like ?
+								or lastname2 like ?
+								or email like ?
+								or rut like ?",
+								params[:name].blank? ? nil : "%#{params[:name]}%",
+								params[:lastname].blank? ? nil : "%#{params[:lastname]}%",
+								params[:lastname].blank? ? nil : "%#{params[:lastname]}%",
+								params[:email].blank? ? nil : "%#{params[:email]}%",
+								params[:rut].blank? ? nil : "%#{params[:rut]}%")
+		render :index
+	end
+
 	def new
 		@worker = Worker.new()
 		@contractors = Contractor.all()

@@ -5,6 +5,11 @@ class ServicesController < ApplicationController
 		@services = Service.all()
 	end
 
+	def search
+		@services = Service.where("name like ?", params[:name].blank? ? nil : "%#{params[:name]}%")
+		render :index
+	end
+
 	def new
 		@service = Service.new()
 	end

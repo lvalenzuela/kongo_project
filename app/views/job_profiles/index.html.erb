@@ -14,13 +14,16 @@
 			<div class="box box-info">
 				<div class="box-header">
 					<h3 class="box-title"><%=t(:job_profile_search)%></h3>
+					<div class="box-tools">
+						<%=link_to t(:show_all), {:action => :index}, {:class => "btn btn-default pull-right"}%>
+					</div>
 				</div>
-				<%=form_tag do%>
+				<%=form_tag search_job_profiles_path, :method => :get do%>
 				<div class="box-body">
 					<div class="row">
 						<div class="col-xs-6 form-group">
 							<label>Nombre</label>
-							<%=text_field_tag :job_profile_name, nil, :class => "form-control"%>
+							<%=text_field_tag :name, nil, :class => "form-control"%>
 						</div>
 					</div>
 				</div>

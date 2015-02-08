@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /es|en/ do
     resources :users do
       collection do 
+        get :search
         get :user_login
         post :login
         get :profile
@@ -19,12 +20,14 @@ Rails.application.routes.draw do
     resources :trainings do
       collection do
         get :index
+        get :search
       end
     end
 
     resources :job_profiles do
       collection do
         get :index
+        get :search
         get :edit_trainings
         post :save_trainings
       end
@@ -33,12 +36,14 @@ Rails.application.routes.draw do
     resources :workers do 
       collection do
         get :index
+        get :search
       end
     end
 
     resources :contractors do 
       collection do 
         get :index
+        get :search
         get :new_service
         post :bind_service
         get :new_worker
@@ -53,6 +58,7 @@ Rails.application.routes.draw do
     resources :services do
       collection do
         get :index
+        get :search
       end
     end
   end

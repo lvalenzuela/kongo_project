@@ -3,17 +3,23 @@ class User < ActiveRecord::Base
 	validates_confirmation_of :password, :email
 	validates :firstname, :lastname, :email, :idnumber, :role_id, :password, :presence => true
 	validates :email, :idnumber, :uniqueness => true
-	before_create :generate_defaults
-	before_update :update_password
+	before_create :creation_defaults
 
 	def update_password
 		self.password = BCrypt::Password.create(self.password)
 	end
 
-	def generate_defaults
+	def update_defaults
+		name = firstname+" "+lastname
+	end
+
+	def creation_defaults
 		self.name = self.firstname+" "+self.lastname
 		self.username = self.email
 		self.password = BCrypt::Password.create(self.password)
+		if lang.blank?
+			lang = "es"
+		end
 	end
 
 	def generate_token(column)

@@ -7,6 +7,16 @@ class UsersController < ApplicationController
 		@users = User.all()
 	end
 
+	def search
+		@users = User.where("firstname like ?
+							or lastname like ?
+							or idnumber like ?",
+							params[:name].blank? ? nil : "%#{params[:name]}%",
+							params[:lastname].blank? ? nil : "%#{params[:lastname]}%",
+							params[:idnumber].blank? ? nil : "%#{params[:idnumber]}%",)
+		render :index
+	end
+
 	def user_login
 
 	end
@@ -18,10 +28,17 @@ class UsersController < ApplicationController
 			redirect_to :action => :user_login
 		elsif BCrypt::Password.new(user.password) == params[:password] #el nombre de usuario existe
 			if params[:remember_me]
-				cookies.permanent[:auth_token] = User.find(user.id).check_auth_token
+				cookies.permanent[:auth_token] = user.check_auth_token
 			else
-				cookies[:auth_token] = User.find(user.id).check_auth_token
+				cookies[:auth_token] = user.check_auth_token
 			end
+			if user.first_access.nil?
+				#registrar primer login
+				user.first_access = Date.today()
+			end
+			#registrar login
+			user.last_access = Date.today()
+			user.save!
 			redirect_to root_path
 		else #la contraseña no es la correcta
 			flash[:notice] = "La contraseña ingresada es incorrecta. Por favor intentalo de nuevo."

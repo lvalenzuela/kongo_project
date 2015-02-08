@@ -6,6 +6,18 @@ class ContractorsController < ApplicationController
 		@contractors = Contractor.all()
 	end
 
+	def search
+		@contractors = Contractor.where("commercial_name like ?
+										or business_name like ?
+										or email like ?
+										or rut like ?",
+										params[:commercial_name].blank? ? nil : "%#{params[:commercial_name]}%",
+										params[:business_name].blank? ? nil : "%#{params[:business_name]}%",
+										params[:email].blank? ? nil : "%#{params[:email]}%",
+										params[:rut].blank? ? nil : "%#{params[:rut]}%")
+		render :index
+	end
+
 	def new
 		@contractor = Contractor.new()
 	end

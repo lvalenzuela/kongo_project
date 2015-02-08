@@ -5,6 +5,11 @@ class JobProfilesController < ApplicationController
 		@job_profiles = JobProfile.all()
 	end
 
+	def search
+		@job_profiles = JobProfile.where("name like ?", params[:name].blank? ? nil : "%#{params[:name]}%")
+		render :index
+	end
+
 	def new
 		@job_profile = JobProfile.new()
 		@trainings = Training.all()

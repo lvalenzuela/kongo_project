@@ -6,6 +6,14 @@ class TrainingsController < ApplicationController
 		@trainings = Training.all()
 	end
 
+	def search 
+		@trainings = Training.where("name like ?
+									or validity_period = ?",
+									params[:name].blank? ? nil : "%#{params[:name]}%",
+									params[:validity_period].blank? ? nil : params[:validity_period])
+		render :index
+	end
+
 	def new
 		@training = Training.new()
 	end
