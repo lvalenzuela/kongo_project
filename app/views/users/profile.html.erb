@@ -10,4 +10,54 @@
 </section>
 
 <section class="content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"> <%=t(:profile)%> - <%=@current_user.name%></h3>
+				</div>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-6">
+							<table class="table table-striped">
+								<tr>
+									<th><%=t(:name)%></th>
+									<td><%=@current_user.name%></td>
+								</tr>
+								<tr>
+									<th><%=t(:email)%></th>
+									<td><%=@current_user.email%></td>
+								</tr>
+								<tr>
+									<th><%=t(:username)%></th>
+									<td><%=@current_user.username%></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-xs-6">
+							<table class="table table-striped">
+								<tr>
+									<th><%=t(:idnumber)%></th>
+									<td><%=@current_user.idnumber%></td>
+								</tr>
+								<tr>
+									<th><%=t(:role)%></th>
+									<td><%=user_role(@current_user.role_id)%></td>
+								</tr>
+								<tr>
+									<th><%=t(:last_login)%></th>
+									<td><%=l(@current_user.last_access, :format => :default)%></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer clearfix">
+					<div class="pull-right">
+						<%=link_to t(:change_password), {:action => :change_password}, {:class => "btn btn-warning"}%>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>

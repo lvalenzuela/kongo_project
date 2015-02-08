@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         post :login
         get :profile
         get :logout
+        get :change_password
       end
     end
 
@@ -37,6 +38,13 @@ Rails.application.routes.draw do
       collection do
         get :index
         get :search
+        get :contractor_select
+        get :bulk_new
+        post :workers_file_config
+        get :workers_file_example
+        get :example_creation_file
+        post :creation_file_config
+        post :bulk_create
       end
     end
 

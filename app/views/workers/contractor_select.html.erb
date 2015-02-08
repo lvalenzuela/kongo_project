@@ -1,0 +1,48 @@
+<section class="content-header no-margin">
+    <h1>
+        <%=t(:workers)%>
+        <small><%=t(:bulk_creation)%></small>
+    </h1>
+    <ol class="breadcrumb">
+    	<li><%=link_to t(:workers), :action => :index%></li>
+        <li class="active"><%=t(:bulk_creation)%></li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="col-xs-10 col-xs-offset-1">
+		<div class="box box-info">
+			<div class="box-header">
+				<h3 class="box-title"><%=t(:contractors_list)%></h3>
+			</div>
+			<div class="box-body">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th><%=t(:commercial_name)%></th>
+							<th><%=t(:business_name)%></th>
+							<th><%=t(:select)%></th>
+						</tr>
+					</thead>
+					<tbody>
+						<%if @contractors.blank?%>
+						<tr>
+							<td colspan="3"><%=t(:no_data)%></td>
+						</tr>
+						<%else%>
+							<%@contractors.each do |c|%>
+							<tr>
+								<td><%=c.commercial_name%></td>
+								<td><%=c.business_name%></td>
+								<td><%=link_to fa_icon("forward"), {:action => :bulk_new, :params => {:contractor_id => c.id}}, {:class => "btn btn-default btn-sm"}%></td>
+							</tr>
+							<%end%>
+						<%end%>
+					</tbody>
+				</table>
+			</div>
+			<div class="box-footer">
+			</div>
+		</div>
+	</div>
+</section>

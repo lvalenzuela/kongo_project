@@ -1,0 +1,62 @@
+<section class="content-header no-margin">
+    <h1>
+        <%=t(:bulk_new_workers)%>
+        <small><%=@contractor.commercial_name%></small>
+    </h1>
+    <ol class="breadcrumb">
+    	<li><%=link_to t(:workers), :action => :index%></li>
+        <li><%=link_to t(:contractor_select), :action => :contractor_select%></li>
+        <li class="active"><%=@contractor.commercial_name%></li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=t(:new_workers_file)%></h3>
+				</div>
+				<%=form_tag creation_file_config_workers_path, :multipart => true do%>
+				<%=hidden_field_tag :contractor_id, @contractor.id%>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-8 col-xs-offset-2">
+							<%if flash[:notice]%>
+								<div class="callout callout-warning">
+									<p><%=flash[:notice]%></p>
+								</div>
+							<%end%>
+						</div>
+						<div class="col-xs-8 col-xs-offset-2">
+							<p>Antes de ingresar el archvo, revisar por favor el siguiente ejemplo. <%=link_to t(:example_file), {:action => :example_creation_file}, {:target => "_blank"}%></p>
+
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 col-xs-offset-2">
+							<div class="btn btn-primary btn-file">
+								<i class="fa fa-upload"></i> <%=t(:workers_file)%>
+								<%=file_field_tag :workers_file%>
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<%=text_field_tag :file_path, nil, {:disabled => true, :class => "form-control"}%>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer clearfix">
+					<%=submit_tag "Subir Archivo", :class => "btn btn-primary pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+$( "#workers_file" ).change(function(){
+    var file_path = $("#workers_file").val();
+    $( "#file_path" ).val(file_path);
+});
+</script>

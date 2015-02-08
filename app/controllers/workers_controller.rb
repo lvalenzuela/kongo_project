@@ -1,6 +1,9 @@
 class WorkersController < ApplicationController
 	before_filter :set_current_user
 
+	include WorkersLib
+	include CommonLib
+
 	def index
 		@workers = Worker.all()
 	end
@@ -26,6 +29,44 @@ class WorkersController < ApplicationController
 
 	def create
 		@worker = Worker.create(worker_params)
+	end
+
+	def contractor_select
+		@contractors = Contractor.all()
+	end
+
+	def bulk_new
+		@contractor = Contractor.find(params[:contractor_id])
+	end
+
+	def example_creation_file
+		send_file example_file("workers_list.csv")
+	end
+
+	def creation_file_config
+		begin
+			@file = params[:workers_file]
+			file_contents = @file.read
+			csv_workers = CSV.parse(file_contents)
+			@file_headers = csv_workers.first()
+			@contractor = Contractor.find(params[:contractor_id])
+		rescue => error
+			puts error.inspect
+			flash[:notice] = "Ocurrió un error al leer el archivo indicado. Por favor, revisa el archivo de ejemplo y vuelve a intentarlo."
+			#se vuelve a solicitar el archivo
+			redirect_to :action => :bulk_new_workers, :id => params[:contractor_id]
+		ensure
+		end
+	end
+
+	def bulk_create
+		created_workers = bulk_workers_from_file(params[:workers_file_path],params[:file_column], params[:contractor_id])
+		if created_workers == -1
+			flash[:notice] = "Ocurrió un error al leer el archivo indicado. Por favor, revisa el archivo de ejemplo y vuelve a intentarlo."
+		else
+			flash[:notice] = "Se han creado #{created_workers} nuevos trabajadores"
+		end
+		redirect_to :action => :bulk_new, :contractor_id => params[:contractor_id]
 	end
 
 	private

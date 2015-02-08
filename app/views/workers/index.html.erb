@@ -56,7 +56,10 @@
 				<div class="box-header">
 					<h3 class="box-title">Listado de Trabajadores</h3>
 					<div class="box-tools">
-						<%=link_to "Nuevo Trabajador", {:action => :new}, {:class => "btn btn-default pull-right"}%>
+						<div class="pull-right">
+						<%=link_to t(:new_worker), {:action => :new}, {:class => "btn btn-default"}%>
+						<%=link_to t(:bulk_creation), {:action => :contractor_select}, {:class => "btn btn-default"}%>
+						</div>
 					</div>
 				</div>
 				<div class="box-body">

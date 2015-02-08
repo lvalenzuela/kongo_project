@@ -2,6 +2,9 @@ class ContractorsController < ApplicationController
 	before_filter :set_current_user
 	require "csv"
 
+	include WorkersLib
+	include CommonLib
+
 	def index
 		@contractors = Contractor.all()
 	end
@@ -82,7 +85,7 @@ class ContractorsController < ApplicationController
 	end
 
 	def workers_file_example
-		send_file Rails.root.join("app","assets","file_examples","workers_list.csv")
+		send_file example_file("workers_list.csv")
 	end
 
 	def workers_file_config
@@ -102,39 +105,13 @@ class ContractorsController < ApplicationController
 	end
 
 	def bulk_create_workers
-		begin
-			file_contents = File.read(params[:workers_file_path])
-			csv_workers = CSV.parse(file_contents, :headers => true)
-			counter = 0
-			csv_workers.each do |row|
-				if !Worker.exists?(:rut => row["Rut"])
-					wk = Worker.new()
-					wk.firstname = file_column_exists?(row,params[:file_column][0])
-					wk.lastname1 = file_column_exists?(row,params[:file_column][1])
-					wk.lastname2 = file_column_exists?(row,params[:file_column][2])
-					wk.rut = file_column_exists?(row,params[:file_column][3])
-					wk.birthday = file_column_exists?(row,params[:file_column][4])
-					wk.gender = file_column_exists?(row,params[:file_column][5])
-					wk.address = file_column_exists?(row,params[:file_column][6])
-					wk.region = file_column_exists?(row,params[:file_column][7])
-					wk.comuna = file_column_exists?(row,params[:file_column][8])
-					wk.country = file_column_exists?(row,params[:file_column][9])
-					wk.phone = file_column_exists?(row,params[:file_column][10])
-					wk.cellphone = file_column_exists?(row,params[:file_column][11])
-					wk.email = file_column_exists?(row,params[:file_column][12])
-					wk.observations = file_column_exists?(row,params[:file_column][13])
-					wk.contractor_id = params[:contractor_id]
-					wk.save!
-					counter +=1
-				end
-			end
-			flash[:notice] = "Se han creado #{counter} nuevos trabajadores"
-		rescue => error
-			puts error.inspect
+		created_workers = bulk_workers_from_file(params[:workers_file_path],params[:file_column], params[:contractor_id])
+		if created_workers == -1
 			flash[:notice] = "Ocurrió un error al leer el archivo indicado. Por favor, revisa el archivo de ejemplo y vuelve a intentarlo."
-		ensure
-			redirect_to :action => :bulk_new_workers, :id => params[:contractor_id]
+		else
+			flash[:notice] = "Se han creado #{created_workers} nuevos trabajadores"
 		end
+		redirect_to :action => :bulk_new_workers, :id => params[:contractor_id]
 	end
 
 	private
