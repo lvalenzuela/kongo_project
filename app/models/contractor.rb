@@ -7,7 +7,7 @@ class Contractor < ActiveRecord::Base
 
 	def set_defaults
 		#establecer el estado del contratista como activo al momento de crearlo
-		country = 1 #pais por defecto, en futuras versiones se incluiran más... espero
-		status_id = 1 #estado activo
+		self.country = 1 #pais por defecto, en futuras versiones se incluiran más... espero
+		self.status_id = 1 #estado activo
 	end
 end
