@@ -80,7 +80,7 @@
 							<%else%>
 								<%@workers.each do |w|%>
 								<tr>
-									<td><%=w.rut%></td>
+									<td><%=link_to w.rut, worker_path(w.id)%></td>
 									<td><%=w.firstname%></td>
 									<td><%=w.lastname1%></td>
 									<td><%=contractor_name(w.contractor_id)%></td>

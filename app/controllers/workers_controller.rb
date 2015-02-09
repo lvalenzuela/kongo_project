@@ -22,6 +22,28 @@ class WorkersController < ApplicationController
 		render :index
 	end
 
+	def show
+		@worker = Worker.find(params[:id])
+		@documents = WorkerDocument.where(:worker_id => params[:id])
+	end
+
+	def new_document
+		@worker = Worker.find(params[:id])
+		@categories = FileCategory.all()
+		@document = WorkerDocument.new()
+	end
+
+	def create_document
+		@document = WorkerDocument.create(worker_document_params)
+		if @document.valid?
+			redirect_to :action => :show, :id => @document.worker_id
+		else
+			@worker = Worker.find(@document.worker_id)
+			@categories = FileCategory.all()
+			render :new_document
+		end
+	end
+
 	def new
 		@worker = Worker.new()
 		@contractors = Contractor.all()
@@ -70,6 +92,10 @@ class WorkersController < ApplicationController
 	end
 
 	private
+
+	def worker_document_params
+		params.require(:worker_document).permit(:worker_id, :file_category_id, :filename, :file)
+	end
 
 	def worker_params
 		params.require(:worker).permit(	:firstname, 

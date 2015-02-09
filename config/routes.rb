@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         get :profile
         get :logout
         get :change_password
+        post :update_password
       end
     end
 
@@ -45,6 +46,8 @@ Rails.application.routes.draw do
         get :example_creation_file
         post :creation_file_config
         post :bulk_create
+        get :new_document
+        post :create_document
       end
     end
 

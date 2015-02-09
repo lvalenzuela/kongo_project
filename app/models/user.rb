@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
 	validates :email, :idnumber, :uniqueness => true
 	before_create :creation_defaults
 
-	def update_password
-		self.password = BCrypt::Password.create(self.password)
+	def read_password
+		@password ||= BCrypt::Password.new(password)
 	end
 
 	def update_defaults

@@ -1,0 +1,108 @@
+<section class="content-header no-margin">
+    <h1>
+        <%=t(:worker)%>
+        <small><%=@worker.firstname+" "+@worker.lastname1%></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><%=t(:workers_list)%></li>
+        <li class="active"><%=@worker.firstname+" "+@worker.lastname1%></li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=@worker.firstname+" "+@worker.lastname1%></h3>
+				</div>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-6">
+							<table class="table table-striped">
+								<tr>
+									<th><%=t(:firstname)%></th>
+									<td><%=@worker.firstname%></td>
+								</tr>
+								<tr>
+									<th><%=t(:lastname1)%></th>
+									<td><%=@worker.lastname1%></td>
+								</tr>
+								<tr>
+									<th><%=t(:lastname2)%></th>
+									<td><%=@worker.lastname2%></td>
+								</tr>
+								<tr>
+									<th><%=t(:idnumber)%></th>
+									<td><%=@worker.rut%></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col-xs-6">
+							<table class="table table-striped">
+								<tr>
+									<th><%=t(:contractor)%></th>
+									<td><%=contractor_name(@worker.contractor_id)%></td>
+								</tr>
+								<tr>
+									<th><%=t(:gender)%></th>
+									<td><%=@worker.gender%></td>
+								</tr>
+								<tr>
+									<th><%=t(:birthday)%></th>
+									<td><%=@worker.birthday ? l(@worker.birthday, :format => :default) : "-"%></td>
+								</tr>
+								<tr>
+									<th><%=t(:observations)%></th>
+									<td><%=@worker.observations%></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=t(:worker_documents)%></h3>
+					<div class="box-tools">
+						<%=link_to t(:new_document), {:action => :new_document, :params => {:id => @worker.id}}, {:class => "btn btn-sm btn-default pull-right"}%>
+					</div>
+				</div>
+				<div class="box-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th><%=t(:document)%></th>
+								<th><%=t(:category)%></th>
+								<th><%=t(:donwload)%></th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if @documents.blank?%>
+							<tr>
+								<td colspan="3"><%=t(:no_data)%></td>
+							</tr>
+							<%else%>
+								<%@documents.each do |d|%>
+								<tr>
+									<td><%=d.filename%></td>
+									<td><%=d.file_category_id%></td>
+									<td><%=link_to "<i class='fa fa-file-pdf-o fa-lg'></i>".html_safe, d.file.url, {:target => "_blank"}%></td>
+								</tr>
+								<%end%>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

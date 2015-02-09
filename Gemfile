@@ -53,3 +53,6 @@ gem 'jquery-turbolinks'
 
 #datepicker
 gem 'bootstrap-datepicker-rails'
+
+#adjuntar archivos
+gem "paperclip", "~> 4.2"
