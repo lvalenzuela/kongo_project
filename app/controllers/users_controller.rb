@@ -78,6 +78,8 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 		@user.update_attributes(user_params)
+		@user.password = BCrypt::Password.create(params[:user][:password])
+		@user.save!
 		if @user.valid?
 			redirect_to :action => :index
 		else
