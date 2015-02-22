@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209170422) do
+ActiveRecord::Schema.define(version: 20150221225236) do
 
   create_table "contractor_services", force: :cascade do |t|
     t.integer  "contractor_id",      limit: 4
@@ -25,6 +25,14 @@ ActiveRecord::Schema.define(version: 20150209170422) do
   create_table "contractor_statuses", force: :cascade do |t|
     t.string   "name",        limit: 255
     t.string   "description", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contractor_workers", force: :cascade do |t|
+    t.integer  "contractor_id", limit: 4
+    t.integer  "worker_id",     limit: 4
+    t.boolean  "enabled",       limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -152,22 +160,21 @@ ActiveRecord::Schema.define(version: 20150209170422) do
   end
 
   create_table "workers", force: :cascade do |t|
-    t.string   "firstname",     limit: 255
-    t.string   "lastname1",     limit: 255
-    t.string   "lastname2",     limit: 255
-    t.string   "fullname",      limit: 255
-    t.string   "rut",           limit: 255
-    t.integer  "contractor_id", limit: 4
+    t.string   "firstname",    limit: 255
+    t.string   "lastname1",    limit: 255
+    t.string   "lastname2",    limit: 255
+    t.string   "fullname",     limit: 255
+    t.string   "rut",          limit: 255
     t.date     "birthday"
-    t.string   "gender",        limit: 255
-    t.string   "address",       limit: 255
-    t.integer  "region",        limit: 4
-    t.integer  "comuna",        limit: 4
-    t.integer  "country",       limit: 4
-    t.string   "phone",         limit: 255
-    t.string   "cellphone",     limit: 255
-    t.string   "email",         limit: 255
-    t.string   "observations",  limit: 255
+    t.string   "gender",       limit: 255
+    t.string   "address",      limit: 255
+    t.integer  "region",       limit: 4
+    t.integer  "comuna",       limit: 4
+    t.integer  "country",      limit: 4
+    t.string   "phone",        limit: 255
+    t.string   "cellphone",    limit: 255
+    t.string   "email",        limit: 255
+    t.string   "observations", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

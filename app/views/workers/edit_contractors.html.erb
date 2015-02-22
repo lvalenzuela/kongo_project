@@ -1,0 +1,90 @@
+<section class="content-header no-margin">
+    <h1>
+        <%=t(:worker)%>
+        <small><%=@worker.firstname+" "+@worker.lastname1%></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><%=t(:workers_list)%></li>
+        <li><%=@worker.firstname+" "+@worker.lastname1%></li>
+        <li class="active"><%=t(:contractors)%></li>
+    </ol>
+</section>
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=t(:contractors)%></h3>
+				</div>
+				<div class="box-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th><%=t(:contractor)%></th>
+								<th style="text-align:center;"><%=t(:status)%></th>
+								<th style="text-align:center;"><%=t(:delete)%></th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if @worker_contractors.blank?%>
+								<tr>
+									<td colspan="4"><%=t(:no_data)%></td>
+								</tr>
+							<%else%>
+								<%@worker_contractors.each do |c|%>
+								<tr>
+									<td><%=contractor_name(c.contractor_id)%></td>
+									<td style="text-align:center;">
+											<%=link_to (c.enabled ? t(:active) : t(:inactive)), {:action => :toggle_contractor, :params => {:worker_id => @worker.id, :contractor_id => c.contractor_id}}, {:class => "btn btn-default", :method => :put}%>
+									</td>
+									<td style="text-align:center;"><%=link_to fa_icon("times"), {:action => :destroy_contractor, :params => {:worker_id => @worker.id, :contractor_id => c.contractor_id}}, {:class => "btn btn-default", :method => :delete, :data => {:confirm => "¿Está seguro que desea borrar este registro?"}}%></td>
+								</tr>
+								<%end%>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+				<div class="box-footer">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-1">
+			<div class="box box-info">
+				<div class="box-header">
+					<h3 class="box-title"><%=t(:new_contractor)%></h3>
+				</div>
+				<%=form_for :contractor_worker, :url => {:action => :create_contractor_worker} do |f|%>
+				<%=f.hidden_field :worker_id, :value => @worker.id%>
+				<div class="box-body">
+                    <%if @contractor_worker.errors.any?%>
+                        <div class="callout callout-warning">
+                            <h4><%=pluralize(@contractor_worker.errors.count,"error")%> no permitieron llevar a cabo la operacion</h4>
+                            <ul>
+                                <%@contractor_worker.errors.full_messages.each do |msg|%>
+                                    <li><%= msg %></li>
+                                <%end%>
+                            </ul>
+                        </div>
+                    <%end%>
+					<div class="row">
+						<div class="form-group col-xs-8">
+							<label><%=t(:contractor)%></label>
+							<%=f.select :contractor_id, options_for_select(@contractors_list.collect{|c| [c.business_name, c.id]}), {}, {:class => "form-control"}%>
+						</div>
+						<div class="col-xs-4">
+							<label><%=t(:status)%></label>
+							<%=f.select :enabled, options_for_select([[t(:active), true]]), {}, {:class => "form-control", :readonly => true}%>
+						</div>
+					</div>
+				</div>
+				<div class="box-footer clearfix">
+					<%=f.submit t(:create), :class => "btn btn-lg btn-primary pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</section>

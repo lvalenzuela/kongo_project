@@ -48,6 +48,10 @@ Rails.application.routes.draw do
         post :bulk_create
         get :new_document
         post :create_document
+        get :edit_contractors
+        post :create_contractor_worker
+        delete :destroy_contractor
+        put :toggle_contractor
       end
     end
 

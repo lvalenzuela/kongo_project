@@ -69,7 +69,6 @@
 								<th><%=t(:idnumber)%></th>
 								<th><%=t(:firstname)%></th>
 								<th><%=t(:lastname)%></th>
-								<th><%=t(:contractor)%></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -83,7 +82,6 @@
 									<td><%=link_to w.rut, worker_path(w.id)%></td>
 									<td><%=w.firstname%></td>
 									<td><%=w.lastname1%></td>
-									<td><%=contractor_name(w.contractor_id)%></td>
 								</tr>
 								<%end%>
 							<%end%>

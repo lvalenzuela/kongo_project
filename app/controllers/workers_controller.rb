@@ -25,6 +25,37 @@ class WorkersController < ApplicationController
 	def show
 		@worker = Worker.find(params[:id])
 		@documents = WorkerDocument.where(:worker_id => params[:id])
+		@contractors = ContractorWorker.where(:worker_id => params[:id])
+	end
+
+	def edit_contractors
+		@worker = Worker.find(params[:id])
+		@worker_contractors = ContractorWorker.where(:worker_id => params[:id])
+		@contractors_list = Contractor.all()
+		@contractor_worker = ContractorWorker.new()
+	end
+
+	def toggle_contractor
+		contractor_worker = ContractorWorker.where(:contractor_id => params[:contractor_id], :worker_id => params[:worker_id]).first()
+		contractor_worker.toggle!(:enabled)
+		redirect_to :action => :edit_contractors, :id => params[:worker_id]
+	end
+
+	def destroy_contractor
+		ContractorWorker.where(:worker_id => params[:worker_id], :contractor_id => params[:contractor_id]).destroy_all
+		redirect_to :action => :edit_contractors, :id => params[:worker_id]
+	end
+
+	def create_contractor_worker
+		@contractor_worker = ContractorWorker.create(contractor_worker_params)
+		if @contractor_worker.valid?
+			redirect_to :action => :edit_contractors, :id => @contractor_worker.worker_id
+		else
+			@worker = Worker.find(params[:contractor_worker][:worker_id])
+			@worker_contractors = ContractorWorker.where(:worker_id => @worker.id)
+			@contractors_list = Contractor.all()
+			render :edit_contractors
+		end
 	end
 
 	def new_document
@@ -51,6 +82,30 @@ class WorkersController < ApplicationController
 
 	def create
 		@worker = Worker.create(worker_params)
+		if @worker.valid?
+			if params[:contractor_id]
+				#Bind Worker to Contractor
+				ContractorWorker.create(:contractor_id => params[:contractor_id], :worker_id => @worker.id, :enabled => true)
+			end
+			redirect_to :action => :index
+		else
+			@contractors = Contactor.all()
+			render :new
+		end
+	end
+
+	def edit
+		@worker = Worker.find(params[:id])
+	end
+
+	def update
+		@worker = Worker.find(params[:id])
+		@worker.update_attributes(worker_params)
+		if @worker.valid?
+			redirect_to :action => :show, :id => @worker.id
+		else
+			render :edit
+		end
 	end
 
 	def contractor_select
@@ -92,6 +147,10 @@ class WorkersController < ApplicationController
 	end
 
 	private
+
+	def contractor_worker_params
+		params.require(:contractor_worker).permit(:worker_id, :contractor_id, :enabled)
+	end
 
 	def worker_document_params
 		params.require(:worker_document).permit(:worker_id, :file_category_id, :filename, :file)

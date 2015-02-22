@@ -6,7 +6,6 @@ class CreateWorkers < ActiveRecord::Migration
     	t.string :lastname2
     	t.string :fullname
     	t.string :rut
-      t.integer :contractor_id
     	t.date :birthday
     	t.string :gender
     	t.string :address

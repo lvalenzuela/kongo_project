@@ -22,8 +22,9 @@ module WorkersLib
 					wk.cellphone = file_column_exists?(row,columns_hash[11])
 					wk.email = file_column_exists?(row,columns_hash[12])
 					wk.observations = file_column_exists?(row,columns_hash[13])
-					wk.contractor_id = contractor_id
 					wk.save!
+					#Asociar con Contratista
+					ContractorWorker.create(:contractor_id => contractor_id, :worker_id => wk.id, :enabled => true)
 					counter +=1
 				end
 			end
