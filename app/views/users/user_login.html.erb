@@ -1,24 +1,36 @@
-<div class="form-box" id="login-box">
-	<div class="header">Kongo Login</div>
-		<%=form_tag :action => :login do %>
-			<div class="body bg-gray">
-				<div class="form-group">
-					<%=text_field_tag "username", nil, :class => "form-control", placeholder: "Nombre de Usuario"%>
-				</div>
-				<div class="form-group">
-					<%=password_field_tag "password", nil, :class => "form-control", placeholder: "Password"%>
-				</div>
-				<div class="form-group">
-					<%=check_box_tag :remember_me%> Remember Me
-				</div>
+<div class="container" style="padding-top: 20px;">
+    <div class="row">
+		<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading clearfix">
+			    	<h3 class="panel-title">Kongo Login</h3>
+			 	</div>
+			  	<div class="panel-body">
+			    	<%=form_tag :action => :login do %>
+                    <fieldset>
+			    	  	<div class="form-group">
+			    		    <%=text_field_tag "username", nil, :class => "form-control", placeholder: "Nombre de Usuario"%>
+			    		</div>
+			    		<div class="form-group">
+			    			<%=password_field_tag "password", nil, :class => "form-control", placeholder: "Password"%>
+			    		</div>
+			    		<div class="checkbox">
+			    	    	<label>
+			    	    		<%=check_box_tag :remember_me%> Remember Me
+			    	    	</label>
+			    	    </div>
+			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+			    	</fieldset>
+			      	<%end%>
+			    </div>
+			    <div class="panel-footer clearfix">
+					<div class="margin text-center" style="color:#FFF;">
+						<%if flash[:notice]%>
+							<span><%=flash[:notice]%></span>
+						<%end%>
+					</div>
+			    </div>
 			</div>
-			<div class="footer">
-				<button type="submit" class="btn bg-olive btn-block">Login</button>
-			</div>
-		<%end%>
-	<div class="margin text-center" style="color:#FFF;">
-		<%if flash[:notice]%>
-			<span><%=flash[:notice]%></span>
-		<%end%>
+		</div>
 	</div>
 </div>

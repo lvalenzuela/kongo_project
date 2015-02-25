@@ -1,0 +1,110 @@
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:contractors)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:contractors), employees_path%></li>
+					<li><%=link_to @contractor.commercial_name, contractor_path(@contractor.id)%></li>
+					<li class="active"><%=t(:bulk_employee_creation)%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:workers_file_configuration)%></h3>
+				</div>
+				<%=form_tag bulk_create_employees_contractors_path, :multipart => true do%>
+				<%=hidden_field_tag :workers_file_path, @file.path%>
+				<%=hidden_field_tag :contractor_id, @contractor.id%>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-8 col-xs-offset-2">
+							<table class="table">
+								<thead>
+									<tr>
+										<th><%=t(:worker_attribute)%></th>
+										<th><%=t(:file_column)%></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><%=t(:firstname)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:lastname1)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:lastname2)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:idnumber)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:birthday)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:gender)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:address)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:region)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:commune)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:country)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:phone)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:cellphone)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:email)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+									<tr>
+										<td><%=t(:observations)%></td>
+										<td><%=select_tag "file_column[]", options_for_select(@file_headers.collect{|h| [h, @file_headers.index(h)]}), {:class => "form-control", :include_blank => true}%></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer clearfix">
+					<%=submit_tag "Crear", :class => "btn btn-default pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</div>

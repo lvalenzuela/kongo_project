@@ -1,0 +1,70 @@
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:contractors)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:contractors), employees_path%></li>
+					<li><%=link_to @contractor.commercial_name, contractor_path(@contractor.id)%></li>
+					<li class="active"><%=t(:bulk_employee_creation)%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:bulk_employee_creation)%></h3>
+				</div>
+				<%=form_tag employees_file_config_contractors_path, :multipart => true do%>
+				<%=hidden_field_tag :contractor_id, @contractor.id%>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-xs-8 col-xs-offset-2">
+							<%if flash[:notice]%>
+								<div class="callout callout-warning">
+									<p><%=flash[:notice]%></p>
+								</div>
+							<%end%>
+						</div>
+						<div class="col-xs-8 col-xs-offset-2">
+							<p>Antes de ingresar el archvo, revisar por favor el siguiente ejemplo. <%=link_to t(:example_file), {:action => :employees_file_example}, {:target => "_blank"}%></p>
+
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-2 col-xs-offset-2">
+							<div class="btn btn-default btn-file">
+								<i class="fa fa-upload"></i> <%=t(:workers_file)%>
+								<%=file_field_tag :employees_file%>
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<%=text_field_tag :file_path, nil, {:disabled => true, :class => "form-control"}%>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer clearfix">
+					<%=submit_tag t(:upload_file), :class => "btn btn-default pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+$( "#employees_file" ).change(function(){
+    var file_path = $("#employees_file").val();
+    $( "#file_path" ).val(file_path);
+});
+</script>

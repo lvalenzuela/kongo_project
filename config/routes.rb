@@ -35,21 +35,19 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :workers do 
+    resources :employees do
       collection do
         get :index
         get :search
         get :contractor_select
         get :bulk_new
-        post :workers_file_config
-        get :workers_file_example
         get :example_creation_file
         post :creation_file_config
         post :bulk_create
         get :new_document
         post :create_document
         get :edit_contractors
-        post :create_contractor_worker
+        post :create_contractor_employee
         delete :destroy_contractor
         put :toggle_contractor
       end
@@ -61,12 +59,12 @@ Rails.application.routes.draw do
         get :search
         get :new_service
         post :bind_service
-        get :new_worker
-        post :create_worker
-        get :bulk_new_workers
-        post :workers_file_config
-        get :workers_file_example
-        post :bulk_create_workers
+        get :new_employee
+        post :create_employee
+        get :bulk_new_employees
+        post :employees_file_config
+        get :employees_file_example
+        post :bulk_create_employees
       end
     end
 

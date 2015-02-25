@@ -2,7 +2,7 @@ class ContractorsController < ApplicationController
 	before_filter :set_current_user
 	require "csv"
 
-	include WorkersLib
+	include EmployeesLib
 	include CommonLib
 
 	def index
@@ -52,7 +52,7 @@ class ContractorsController < ApplicationController
 	def show
 		@contractor = Contractor.find(params[:id])
 		@contractor_services = ContractorService.where(:contractor_id => params[:id])
-		@contractor_workers = Worker.where(:contractor_id => params[:id])
+		@contractor_employee = Employee.where(:contractor_id => params[:id])
 	end
 
 	def new_service
@@ -72,46 +72,46 @@ class ContractorsController < ApplicationController
 		end
 	end
 
-	def new_worker
+	def new_employee
 		@contractor = Contractor.find(params[:id])
 	end
 
-	def create_worker
+	def create_employee
 
 	end
 
-	def bulk_new_workers
+	def bulk_new_employees
 		@contractor = Contractor.find(params[:id])
 	end
 
-	def workers_file_example
+	def employees_file_example
 		send_file example_file("workers_list.csv")
 	end
 
-	def workers_file_config
+	def employees_file_config
 		begin
-			@file = params[:workers_file]
+			@file = params[:employees_file]
 			file_contents = @file.read
-			csv_workers = CSV.parse(file_contents)
-			@file_headers = csv_workers.first()
+			csv_employees = CSV.parse(file_contents)
+			@file_headers = csv_employees.first()
 			@contractor = Contractor.find(params[:contractor_id])
 		rescue => error
 			puts error.inspect
 			flash[:notice] = "Ocurrió un error al leer el archivo indicado. Por favor, revisa el archivo de ejemplo y vuelve a intentarlo."
 			#se vuelve a solicitar el archivo
-			redirect_to :action => :bulk_new_workers, :id => params[:contractor_id]
+			redirect_to :action => :bulk_new_employees, :id => params[:contractor_id]
 		ensure
 		end
 	end
 
-	def bulk_create_workers
-		created_workers = bulk_workers_from_file(params[:workers_file_path],params[:file_column], params[:contractor_id])
-		if created_workers == -1
+	def bulk_create_employees
+		created_employees = bulk_employees_from_file(params[:employees_file_path],params[:file_column], params[:contractor_id])
+		if created_employees == -1
 			flash[:notice] = "Ocurrió un error al leer el archivo indicado. Por favor, revisa el archivo de ejemplo y vuelve a intentarlo."
 		else
-			flash[:notice] = "Se han creado #{created_workers} nuevos trabajadores"
+			flash[:notice] = "Se han creado #{created_employees} nuevos trabajadores"
 		end
-		redirect_to :action => :bulk_new_workers, :id => params[:contractor_id]
+		redirect_to :action => :bulk_new_employees, :id => params[:contractor_id]
 	end
 
 	private

@@ -1,25 +1,33 @@
-<section class="content-header no-margin">
-    <h1>
-        Contratistas
-        <small><%=@contractor.commercial_name%></small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><%=link_to "Listado de Contratistas", :action => :index%></li>
-        <li class="active">Detalles de Contratista</li>
-    </ol>
-</section>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:contractors)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:contractors), employees_path%></li>
+					<li class="active"><%=@contractor.commercial_name%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
-<section class="content">
+<div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title">Datos Generales - <%=@contractor.commercial_name%></h3>
-					<div class="box-tools">
-						<%=link_to "Editar Contratista", edit_contractor_path(@contractor.id), {:class => "btn btn-default btn-sm pull-right"}%>
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:contractor_profile)%></h3>
+					<div class="button-group pull-right">
+						<%=link_to t(:edit_contractor), edit_contractor_path(@contractor.id), {:class => "btn btn-default btn-sm"}%>
 					</div>
 				</div>
-				<div class="box-body">
+				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-6">
 							<table class="table table-striped">
@@ -71,21 +79,19 @@
 						</div>
 					</div>
 				</div>
-				<div class="box-footer">
-				</div>
 			</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-6">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title">Servicios Asociados</h3>
-					<div class="box-tools">
-						<%=link_to "Asociar Servicio", {:action => :new_service, :params => {:id => @contractor.id}}, {:class => "btn btn-default btn-sm pull-right"}%>
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:contractor_services)%></h3>
+					<div class="button-group pull-right">
+						<%=link_to t(:new_service), {:action => :new_service, :params => {:id => @contractor.id}}, {:class => "btn btn-default btn-sm"}%>
 					</div>
 				</div>
-				<div class="box-body">
+				<div class="panel-body">
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -111,19 +117,17 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="box-footer">
-				</div>
 			</div>
 		</div>
 		<div class="col-xs-6">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title">Trabajadores</h3>
-					<div class="box-tools">
-						<%=link_to "Registrar Trabajadores", {:action => :new_worker, :params => {:id => @contractor.id}}, {:class => "btn btn-default btn-sm pull-right"}%>
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title">Trabajadores</h3>
+					<div class="button-group pull-right">
+						<%=link_to t(:new_employee), {:action => :new_employee, :params => {:id => @contractor.id}}, {:class => "btn btn-default btn-sm"}%>
 					</div>
 				</div>
-				<div class="box-body">
+				<div class="panel-body">
 					<table class="table table-striped">
 						<thead>
 							<tr>
@@ -151,9 +155,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="box-footer">
-				</div>
 			</div>
 		</div>
 	</div>
-</section>
+</div>

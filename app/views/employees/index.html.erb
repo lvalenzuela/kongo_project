@@ -2,14 +2,14 @@
 	<div class="page-header" id="banner">
 		<div class="row">
 			<div class="col-xs-12">
-				<h1 id="nav-tabs"><%=t(:trainings)%></h1>
+				<h1 id="nav-tabs"><%=t(:employees)%></h1>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
 				<ul class="breadcrumb">
 					<li><%=link_to t(:home), root_path%></li>
-					<li class="active"><%=t(:trainings)%></li>
+					<li class="active"><%=t(:employees)%></li>
 				</ul>
 			</div>
 		</div>
@@ -27,24 +27,22 @@
 			<table class="table table-striped table-bordered">
 				<thead>
 					<tr>
-						<th></th>
-						<th><%=t(:name)%></th>
-						<th><%=t(:validity_period)%></th>
-						<th><%=t(:edit)%></th>
+						<th><%=t(:idnumber)%></th>
+						<th><%=t(:firstname)%></th>
+						<th><%=t(:lastname)%></th>
 					</tr>
 				</thead>
 				<tbody>
-					<%if @trainings.blank?%>
+					<%if @employees.blank?%>
 					<tr>
-						<td colspan="4"> No hay datos para mostrar.</td>
+						<td colspan="4"> <%=t(:no_data)%></td>
 					</tr>
 					<%else%>
-						<%@trainings.each do |t|%>
+						<%@employees.each do |w|%>
 						<tr>
-							<td><%=t.id%></td>
-							<td><%=t.name%></td>
-							<td><%=t.validity_period%></td>
-							<td><%=link_to fa_icon "edit", training_path(t.id)%></td>
+							<td><%=link_to w.rut, employee_path(w.id)%></td>
+							<td><%=w.firstname%></td>
+							<td><%=w.lastname1%></td>
 						</tr>
 						<%end%>
 					<%end%>

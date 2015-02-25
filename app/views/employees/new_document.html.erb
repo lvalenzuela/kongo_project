@@ -1,0 +1,82 @@
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:employees)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:employees), employees_path%></li>
+					<li><%=link_to @employee.firstname+ " " +@employee.lastname1, employee_path(@employee.id)%></li>
+					<li class="active"><%=t(:new_document)%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:new_document)%></h3>
+				</div>
+				<%=form_for :employee_document, :url => {:action => :create_document}, :html => {:multipart => true} do |f|%>
+				<%=f.hidden_field :employee_id, :value => @employee.id%>
+				<div class="panel-body">
+                    <%if @document.errors.any?%>
+                        <div class="alert alert-warning">
+                            <h4><%=pluralize(@document.errors.count,"error")%> <%=t(:submit_error_msg)%></h4>
+                            <ul>
+                                <%@document.errors.full_messages.each do |msg|%>
+                                    <li><%= msg %></li>
+                                <%end%>
+                            </ul>
+                        </div>
+                    <%end%>
+					<div class="row">
+						<div class="col-xs-8 col-xs-offset-2">
+							<div class="form-group">
+								<label><%=t(:category)%></label>
+								<%=f.select :file_category_id, options_for_select(@categories.collect{|c| [c.name, c.id]}), {}, {:class => "form-control"}%>
+							</div>
+							<div class="form-group">
+								<label><%=t(:file_name)%></label>
+								<%=f.text_field :filename, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label><%=t(:file)%></label>
+								<div class="row">
+									<div class="col-xs-3">
+										<div class="btn btn-default btn-file" style="display:block;">
+											<%=fa_icon "upload"%> <%=t(:upload)%>
+											<%=f.file_field :file%>
+										</div>
+									</div>
+									<div class="col-xs-9">
+										<%=text_field_tag :file_path, nil, {:disabled => true, :class => "form-control"}%>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer clearfix">
+					<%=submit_tag t(:save), :class => "btn btn-default pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+$( "#employee_document_file" ).change(function(){
+    var file_path = $("#employee_document_file").val();
+    $( "#file_path" ).val(file_path);
+});
+</script>

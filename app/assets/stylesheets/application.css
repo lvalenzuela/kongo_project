@@ -12,12 +12,9 @@
  *
  *= require_tree .
  *= require_self
- *= require AdminLTE
  *= require bootstrap-datepicker
  *= require bootstrap.min
  *= require bootstrap3-wysihtml5.min
  *= require dataTables.bootstrap
- *= require fullcalendar
- *= require ionicons.min
  *= require font-awesome
  */

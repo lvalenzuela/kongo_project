@@ -1,39 +1,61 @@
-<section class="content-header no-margin">
-    <h1>
-        Capacitaciones
-        <small>Nueva Capacitación</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><%=link_to "Listado de Capacitaciones", {:action => :index}%></li>
-        <li class="active">Nueva Capacitación</li>
-    </ol>
-</section>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:trainings)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:trainings), trainings_path%></li>
+					<li class="active"><%=t(:new_training)%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
-<section class="content">
+<div class="container">
 	<div class="row">
-		<div class="col-xs-10 col-xs-offset-1">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title">Nueva Capacitación</h3>
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:new_training)%></h3>
 				</div>
 				<%=form_for @training do |f|%>
-				<div class="box-body">
+				<div class="panel-body">
+                    <%if @training.errors.any?%>
+                        <div class="alert alert-warning">
+                            <h4><%=pluralize(@training.errors.count,"error")%> <%=t(:submit_error_msg)%></h4>
+                            <ul>
+                                <%@training.errors.full_messages.each do |msg|%>
+                                    <li><%= msg %></li>
+                                <%end%>
+                            </ul>
+                        </div>
+                    <%end%>
 					<div class="row">
-						<div class="col-xs-8 form-group">
-							<label>Nombre</label>
+						<div class="form-group col-xs-8">
+							<label><%=t(:training)%></label>
 							<%=f.text_field :name, :class => "form-control"%>
 						</div>
-						<div class="col-xs-4 form-group">
-							<label>Periodo de Validez</label>
+						<div class="form-group col-xs-8">
+							<label><%=t(:description)%></label>
+							<%=f.text_field :name, :class => "form-control"%>
+						</div>
+						<div class="form-group col-xs-4">
+							<label><%=t(:validity_period)%></label>
 							<%=f.number_field :validity_period, :min => 0, :class => "form-control"%>
 						</div>
 					</div>
 				</div>
-				<div class="box-footer clearfix">
-					<%=f.submit "Crear", :class => "btn btn-primary btn-lg pull-right"%>
+				<div class="panel-footer clearfix">
+					<%=f.submit "Crear", :class => "btn btn-default pull-right"%>
 				</div>
 				<%end%>
 			</div>
 		</div>
 	</div>
-</section>
+</div>

@@ -1,0 +1,80 @@
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:employees)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:employees), employees_path%></li>
+					<li class="active"><%=t(:new_employee)%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<%=t(:new_employee)%>
+				</div>
+				<%=form_for @employee do |f|%>
+				<div class="panel-body">
+                    <%if @employee.errors.any?%>
+                        <div class="alert alert-warning">
+                            <h4><%=pluralize(@employee.errors.count,"error")%> <%=t(:submit_error_msg)%></h4>
+                            <ul>
+                                <%@employee.errors.full_messages.each do |msg|%>
+                                    <li><%= msg %></li>
+                                <%end%>
+                            </ul>
+                        </div>
+                    <%end%>
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset-1">
+							<div class="form-group">
+								<label>Nombres</label>
+								<%=f.text_field :firstname, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Apellido Paterno</label>
+								<%=f.text_field :lastname1, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Apellido Materno</label>
+								<%=f.text_field :lastname2, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label style="display: block;">Género</label>
+								<%=f.radio_button :gender, "Masculino"%> Masculino
+								<%=f.radio_button :gender, "Femenino"%> Femenino
+							</div>
+							<div class="form-group">
+								<label>Email</label>
+								<%=f.email_field :email, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Rut</label>
+								<%=f.text_field :rut, :class => "form-control"%>
+							</div>
+							<div class="form-group">
+								<label>Contratista</label>
+								<%=select_tag :contractor_id, options_for_select(@contractors.collect{|c| [c.business_name, c.id]}), {:include_blank => true, :class => "form-control"}%>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer clearfix">
+					<%=f.submit t(:create), :class => "btn btn-default pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,57 @@
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:employees)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:employees), employees_path%></li>
+					<li><%=t(:bulk_creation)%></li>
+					<li class="active"><%=t(:contractor_selection)%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<%=t(:contractor_selection)%>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th><%=t(:commercial_name)%></th>
+								<th><%=t(:business_name)%></th>
+								<th><%=t(:select)%></th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if @contractors.blank?%>
+							<tr>
+								<td colspan="3"><%=t(:no_data)%></td>
+							</tr>
+							<%else%>
+								<%@contractors.each do |c|%>
+								<tr>
+									<td><%=c.commercial_name%></td>
+									<td><%=c.business_name%></td>
+									<td><%=link_to fa_icon("forward"), {:action => :bulk_new, :params => {:contractor_id => c.id}}, {:class => "btn btn-default btn-sm"}%></td>
+								</tr>
+								<%end%>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

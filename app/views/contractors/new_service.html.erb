@@ -1,27 +1,35 @@
-<section class="content-header no-margin">
-    <h1>
-        <%=t(:new_service)%>
-        <small><%=@contractor.commercial_name%></small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><%=link_to "Listado de Contratistas", :action => :index%></li>
-        <li><%=link_to "Detalles de Contratista", contractor_path(@contractor.id)%></li>
-        <li class="active">Nuevo Servicio</li>
-    </ol>
-</section>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:contractors)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:contractors), employees_path%></li>
+					<li><%=link_to @contractor.commercial_name, contractor_path(@contractor.id)%></li>
+					<li class="active"><%=t(:new_service)%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
-<section class="content">
+<div class="container">
 	<div class="row">
-		<div class="col-xs-10 col-xs-offset-1">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title"><%=t(:service)%></h3>
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:new_service)%></h3>
 				</div>
 				<%=form_for :contractor_service, :url => {:action => :bind_service} do |f|%>
 				<%=f.hidden_field :contractor_id, :value => @contractor.id%>
-				<div class="box-body">
-                    <%if @contractor_service.errors.any?%>
-                        <div class="callout callout-warning">
+				<div class="panel-body">
+					<%if @contractor_service.errors.any?%>
+                        <div class="alert alert-warning">
                             <h4><%=pluralize(@contractor_service.errors.count,"error")%> <%=t(:submit_error_msg)%></h4>
                             <ul>
                                 <%@contractor_service.errors.full_messages.each do |msg|%>
@@ -47,11 +55,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="box-footer clearfix">
-					<%=f.submit "Asociar", :class => "btn btn-primary pull-right"%>
+				<div class="panel-footer clearfix">
+					<%=f.submit t(:create), :class => "btn btn-default pull-right"%>
 				</div>
 				<%end%>
 			</div>
 		</div>
 	</div>
-</section>
+</div>

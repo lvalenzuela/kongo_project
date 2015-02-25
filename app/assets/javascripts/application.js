@@ -13,14 +13,10 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
-//= jquery-ui-1.10.3.min
 //= require turbolinks
 //= require bootstrap.min
 //= require bootstrap3-wysihtml5.all.min
-//= require app
-//= require application
 //= require bootstrap-datepicker
 //= require jquery.dataTables
-//= require icheck.min
 //= require wysihtml5_load
 //= require_tree .

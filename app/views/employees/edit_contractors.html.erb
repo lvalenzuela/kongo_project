@@ -1,0 +1,96 @@
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:employees)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:employees), employees_path%></li>
+					<li><%=link_to @employee.firstname+ " " +@employee.lastname1, employee_path(@employee.id)%></li>
+					<li class="active"><%=t(:employee_contractors)%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:employee_contractors)%></h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th><%=t(:contractor)%></th>
+								<th style="text-align:center;"><%=t(:status)%></th>
+								<th style="text-align:center;"><%=t(:delete)%></th>
+							</tr>
+						</thead>
+						<tbody>
+							<%if @employee_contractors.blank?%>
+								<tr>
+									<td colspan="4"><%=t(:no_data)%></td>
+								</tr>
+							<%else%>
+								<%@employee_contractors.each do |c|%>
+								<tr>
+									<td><%=contractor_name(c.contractor_id)%></td>
+									<td style="text-align:center;">
+											<%=link_to (c.enabled ? t(:active) : t(:inactive)), {:action => :toggle_contractor, :params => {:employee_id => @employee.id, :contractor_id => c.contractor_id}}, {:class => "btn btn-default", :method => :put}%>
+									</td>
+									<td style="text-align:center;"><%=link_to fa_icon("times"), {:action => :destroy_contractor, :params => {:employee_id => @employee.id, :contractor_id => c.contractor_id}}, {:class => "btn btn-default", :method => :delete, :data => {:confirm => "¿Está seguro que desea borrar este registro?"}}%></td>
+								</tr>
+								<%end%>
+							<%end%>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:new_contractor)%></h3>
+				</div>
+				<%=form_for :contractor_employee, :url => {:action => :create_contractor_employee} do |f|%>
+				<%=f.hidden_field :employee_id, :value => @employee.id%>
+				<div class="panel-body">
+                    <%if @contractor_employee.errors.any?%>
+                        <div class="alert alert-warning">
+                            <h4><%=pluralize(@contractor_employee.errors.count,"error")%> no permitieron llevar a cabo la operacion</h4>
+                            <ul>
+                                <%@contractor_employee.errors.full_messages.each do |msg|%>
+                                    <li><%= msg %></li>
+                                <%end%>
+                            </ul>
+                        </div>
+                    <%end%>
+					<div class="row">
+						<div class="form-group col-xs-8">
+							<label><%=t(:contractor)%></label>
+							<%=f.select :contractor_id, options_for_select(@contractors_list.collect{|c| [c.business_name, c.id]}), {}, {:class => "form-control"}%>
+						</div>
+						<div class="form-group col-xs-4">
+							<label><%=t(:status)%></label>
+							<%=f.select :enabled, options_for_select([[t(:active), true]]), {}, {:class => "form-control", :readonly => true}%>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer clearfix">
+					<%=f.submit t(:create), :class => "btn btn-default pull-right"%>
+				</div>
+				<%end%>
+			</div>
+		</div>
+	</div>
+</div>
