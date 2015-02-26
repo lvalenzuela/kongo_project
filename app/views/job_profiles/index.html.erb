@@ -1,77 +1,58 @@
-<section class="content-header no-margin">
-    <h1>
-        <%=t(:job_profile)%>
-        <small><%=t(:job_profile_list)%></small>
-    </h1>
-    <ol class="breadcrumb">
-        <li class="active"><%=t(:job_profile_list)%></li>
-    </ol>
-</section>
-
-<section class="content">
-	<div class="row">
-		<div class="col-xs-10 col-xs-offset-1">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title"><%=t(:job_profile_search)%></h3>
-					<div class="box-tools">
-						<%=link_to t(:show_all), {:action => :index}, {:class => "btn btn-default pull-right"}%>
-					</div>
-				</div>
-				<%=form_tag search_job_profiles_path, :method => :get do%>
-				<div class="box-body">
-					<div class="row">
-						<div class="col-xs-6 form-group">
-							<label>Nombre</label>
-							<%=text_field_tag :name, nil, :class => "form-control"%>
-						</div>
-					</div>
-				</div>
-				<div class="box-footer clearfix">
-					<div class="pull-right">
-						<%=submit_tag "Buscar", :class => "btn btn-primary "%>
-					</div>
-				</div>
-				<%end%>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:job_profiles)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li class="active"><%=t(:job_profiles)%></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<%=render :partial => "tools_partial"%>
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="container">	
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title"><%=t(:job_profile_list)%></h3>
-					<div class="box-tools">
-						<%=link_to t(:new_job_profile), {:action => :new}, {:class => "btn btn-default pull-right"}%>
-					</div>
-				</div>
-				<div class="box-body">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Nombre</th>
-								<th>Descripcion</th>
-							</tr>
-						</thead>
-						<tbody>
-							<%if @job_profiles.blank?%>
-							<tr>
-								<td colspan="4"><%=t(:no_data)%></td>
-							</tr>
-							<%else%>
-								<%@job_profiles.each do |j|%>
-								<tr>
-									<td><%=link_to j.name, job_profile_path(j.id)%></td>
-									<td><%=j.description.truncate(40)%></td>
-								</tr>
-								<%end%>
-							<%end%>
-						</tbody>
-					</table>
-				</div>
-				<div class="box-footer">
-				</div>
-			</div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th><%=t(:name)%></th>
+						<th><%=t(:description)%></th>
+						<th style="text-align: center; width: 170px;"><%=t(:actions)%></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%if @job_profiles.blank?%>
+					<tr>
+						<td colspan="3"><%=t(:no_data)%></td>
+					</tr>
+					<%else%>
+						<%@job_profiles.each do |j|%>
+						<tr>
+							<td><%=link_to j.name, job_profile_path(j.id)%></td>
+							<td><%=j.description.truncate(40)%></td>
+							<td>
+								<div class="btn-group">
+									<%=link_to fa_icon("eye fa-4")+" "+t(:view), job_profile_path(j.id), {:class => "btn btn-default"}%>
+									<%=link_to fa_icon("edit fa-4")+" "+t(:edit), edit_job_profile_path(j.id), {:class => "btn btn-default"}%>
+								</div>
+							</td>
+						</tr>
+						<%end%>
+					<%end%>
+				</tbody>
+			</table>
 		</div>
 	</div>
-</section>
+</div>

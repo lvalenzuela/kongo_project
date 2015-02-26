@@ -24,19 +24,20 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<table class="table table-striped table-bordered">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>RUT</th>
 						<th>Nombre</th>
 						<th>Razón Social</th>
 						<th>Email</th>
+						<th style="text-align: center; width: 170px;"><%=t(:actions)%></th>
 					</tr>
 				</thead>
 				<tbody>
 					<%if @contractors.blank?%>
 					<tr>
-						<td colspan="4"> No hay datos para mostrar.</td>
+						<td colspan="5"> No hay datos para mostrar.</td>
 					</tr>
 					<%else%>
 						<%@contractors.each do |c|%>
@@ -45,6 +46,12 @@
 							<td><%=c.commercial_name%></td>
 							<td><%=c.business_name%></td>
 							<td><%=c.email%></td>
+							<td>
+								<div class="btn-group">
+									<%=link_to fa_icon("eye fa-4")+" "+t(:view), contractor_path(c.id), {:class => "btn btn-default"}%>
+									<%=link_to fa_icon("edit fa-4")+" "+t(:edit), edit_contractor_path(c.id), {:class => "btn btn-default"}%>
+								</div>
+							</td>
 						</tr>
 						<%end%>
 					<%end%>

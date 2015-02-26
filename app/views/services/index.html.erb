@@ -1,81 +1,51 @@
-<section class="content-header no-margin">
-    <h1>
-        Servicios
-        <small>Listado de Servicios</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li class="active">Listado de Servicios</li>
-    </ol>
-</section>
-
-<section class="content">
-	<div class="row">
-		<div class="col-xs-10 col-xs-offset-1">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title">Búsqueda de Servicios</h3>
-					<div class="box-tools">
-						<%=link_to t(:show_all), {:action => :index}, {:class => "btn btn-default pull-right"}%>
-					</div>
-				</div>
-				<%=form_tag search_services_path, :method => :get do%>
-				<div class="box-body">
-					<div class="row">
-						<div class="col-xs-6 form-group">
-							<label>Nombre</label>
-							<%=text_field_tag :name, nil, :class => "form-control"%>
-						</div>
-						<div class="col-xs-6 form-group">
-							<label>Número de Folio</label>
-							<%=text_field_tag :service_contract_id, nil, :class => "form-control"%>
-						</div>
-					</div>
-				</div>
-				<div class="box-footer clearfix">
-					<div class="pull-right">
-						<%=submit_tag "Buscar", :class => "btn btn-primary "%>
-					</div>
-				</div>
-				<%end%>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:services)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li class="active"><%=t(:services)%></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<%=render :partial => "tools_partial"%>
 			</div>
 		</div>
 	</div>
+</div>
+
+<div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title">Listado de Servicios</h3>
-					<div class="box-tools">
-						<%=link_to "Nuevo Servicio", {:action => :new}, {:class => "btn btn-default pull-right"}%>
-					</div>
-				</div>
-				<div class="box-body">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Nombre</th>
-								<th>Descripcion</th>
-							</tr>
-						</thead>
-						<tbody>
-							<%if @services.blank?%>
-							<tr>
-								<td colspan="4"> No hay datos para mostrar.</td>
-							</tr>
-							<%else%>
-								<%@services.each do |s|%>
-								<tr>
-									<td><%=s.name%></td>
-									<td><%=s.description.truncate(40)%></td>
-								</tr>
-								<%end%>
-							<%end%>
-						</tbody>
-					</table>
-				</div>
-				<div class="box-footer">
-				</div>
-			</div>
+			<table class="table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Descripcion</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%if @services.blank?%>
+					<tr>
+						<td colspan="4"> No hay datos para mostrar.</td>
+					</tr>
+					<%else%>
+						<%@services.each do |s|%>
+						<tr>
+							<td><%=s.name%></td>
+							<td><%=s.description.truncate(40)%></td>
+						</tr>
+						<%end%>
+					<%end%>
+				</tbody>
+			</table>
 		</div>
 	</div>
-</section>
+</div>

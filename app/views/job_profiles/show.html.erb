@@ -1,25 +1,33 @@
-<section class="content-header no-margin">
-    <h1>
-        <%=t(:job_profile)%>
-        <small><%=@job_profile.name%></small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><%=link_to t(:job_profile_list), :action => :index%></li>
-        <li class="active"><%=t(:job_profile_details)%></li>
-    </ol>
-</section>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:job_profiles)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:job_profiles), job_profiles_path%></li>
+					<li class="active"><%=@job_profile.name%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
-<section class="content">
+<div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title"><%=t(:general_data)%> - <%=@job_profile.name%></h3>
-					<div class="box-tools">
-						<%=link_to t(:edit_job_profile), edit_job_profile_path(@job_profile.id), {:class => "btn btn-default btn-sm pull-right"}%>
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:general_data)%> - <%=@job_profile.name%></h3>
+					<div class="brn-group pull-right">
+						<%=link_to t(:edit_job_profile), edit_job_profile_path(@job_profile.id), {:class => "btn btn-default btn-sm"}%>
 					</div>
 				</div>
-				<div class="box-body">
+				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-12">
 							<table class="table table-striped">
@@ -35,22 +43,20 @@
 						</div>
 					</div>
 				</div>
-				<div class="box-footer">
-				</div>
 			</div>
 		</div>
-	</div>
+	</div>	
 	<div class="row">
 		<div class="col-xs-6">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title"><%=t(:associated_trainings)%></h3>
-					<div class="box-tools">
-						<%=link_to t(:edit_trainings), {:action => :edit_trainings, :params => {:id => @job_profile.id}}, {:class => "btn btn-default btn-sm pull-right"}%>
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:associated_trainings)%></h3>
+					<div class="btn-group pull-right">
+						<%=link_to t(:edit_trainings), {:action => :edit_trainings, :params => {:id => @job_profile.id}}, {:class => "btn btn-default btn-sm"}%>
 					</div>
 				</div>
-				<div class="box-body">
-					<table class="table table-striped">
+				<div class="panel-body">
+					<table class="table table-striped table-bordered">
 						<thead>
 							<tr>
 								<th><%=t(:training)%></th>
@@ -78,4 +84,4 @@
 			</div>
 		</div>
 	</div>
-</section>
+</div>

@@ -1,12 +1,12 @@
 module EmployeesLib
-
 	def bulk_employees_from_file(file_path, columns_hash, contractor_id)
 		begin
 			counter = 0
+			puts file_path
 			file_contents = File.read(file_path)
 			csv_employees = CSV.parse(file_contents, :headers => true)
 			csv_employees.each do |row|
-				if !Employee.exists?(:rut => row["Rut"])
+				if !Employee.exists?(:rut => file_column_exists?(row,columns_hash[3]))
 					wk = Employee.new()
 					wk.firstname = file_column_exists?(row,columns_hash[0])
 					wk.lastname1 = file_column_exists?(row,columns_hash[1])

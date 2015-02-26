@@ -26,7 +26,7 @@
 					<%=t(:file_config)%>
 				</div>
 				<%=form_tag bulk_create_employees_path, :multipart => true do%>
-				<%=hidden_field_tag :workers_file_path, @file.path%>
+				<%=hidden_field_tag :employees_file_path, @file.path%>
 				<%=hidden_field_tag :contractor_id, @contractor.id%>
 				<div class="panel-body">
 					<div class="row">

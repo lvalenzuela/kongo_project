@@ -24,12 +24,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<table class="table table-striped table-bordered">
+			<table class="table table-striped" id="employees-table">
 				<thead>
 					<tr>
 						<th><%=t(:idnumber)%></th>
 						<th><%=t(:firstname)%></th>
 						<th><%=t(:lastname)%></th>
+						<th style="text-align: center; width: 170px;"><%=t(:actions)%></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,6 +44,12 @@
 							<td><%=link_to w.rut, employee_path(w.id)%></td>
 							<td><%=w.firstname%></td>
 							<td><%=w.lastname1%></td>
+							<td style="text-align: center;">
+								<div class="btn-group">
+									<%=link_to fa_icon("eye fa-4")+" "+t(:view), employee_path(w.id), {:class => "btn btn-default"}%>
+									<%=link_to fa_icon("edit fa-4")+" "+t(:edit), edit_employee_path(w.id), {:class => "btn btn-default"}%>
+								</div>
+							</td>
 						</tr>
 						<%end%>
 					<%end%>
@@ -51,3 +58,9 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#employees-table").dataTable();
+    });
+</script>

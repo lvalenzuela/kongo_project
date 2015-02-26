@@ -30,7 +30,7 @@
 						<th></th>
 						<th><%=t(:name)%></th>
 						<th><%=t(:validity_period)%></th>
-						<th><%=t(:edit)%></th>
+						<th style="text-align: center;"><%=t(:edit)%></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,7 +44,7 @@
 							<td><%=t.id%></td>
 							<td><%=t.name%></td>
 							<td><%=t.validity_period%></td>
-							<td><%=link_to fa_icon "edit", training_path(t.id)%></td>
+							<td style="text-align: center;"><%=link_to fa_icon("edit"), training_path(t.id)%></td>
 						</tr>
 						<%end%>
 					<%end%>

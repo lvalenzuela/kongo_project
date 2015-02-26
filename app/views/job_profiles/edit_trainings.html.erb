@@ -1,29 +1,37 @@
-<section class="content-header no-margin">
-    <h1>
-        <%=t(:job_profile_trainings)%>
-        <small><%=@job_profile.name%></small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><%=link_to t(:job_profile_list), :action => :index%></li>
-        <li><%=link_to t(:job_profile_details), job_profile_path(@job_profile.id)%></li>
-        <li class="active"><%=t(:job_profile_trainings)%></li>
-    </ol>
-</section>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:job_profiles)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:job_profiles), job_profiles_path%></li>
+					<li><%=link_to @job_profile.name, job_profile_path(@job_profile.id)%></li>
+					<li class="active"><%=t(:edit_trainings)%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
-<section class="content">
+<div class="container">
 	<div class="row">
-		<div class="col-xs-10 col-xs-offset-1">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title"><%=t(:job_profile_prerequisites)%></h3>
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:job_profile_prerequisites)%></h3>
 				</div>
 				<%=form_tag save_trainings_job_profiles_path do %>
 				<%=hidden_field_tag :job_profile_id, @job_profile.id%>
-				<div class="box-body">
+				<div class="panel-body">
 					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
+						<div class="col-xs-12">
 							<%@trainings.each do |t|%>
-							<div class="col-xs-6">
+							<div class="col-xs-4">
 								<div class="form-group">
 									<%=check_box_tag "trainings[]", t.id, @job_profile_trainings.include?(t.id) ? true : false%> <label><%=t.name%></label>
 								</div>
@@ -32,11 +40,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="box-footer clearfix">
-					<%=submit_tag "#{t(:save)}", :class => "btn btn-primary pull-right"%>
+				<div class="panel-footer clearfix">
+					<%=submit_tag t(:save), :class => "btn btn-default pull-right"%>
 				</div>
 				<%end%>
 			</div>
 		</div>
 	</div>
-</section>
+</div>

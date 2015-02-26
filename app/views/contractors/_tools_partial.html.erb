@@ -1,11 +1,10 @@
 <div class="btn-group">
-	<%=link_to t(:new_contractor), {:action => :new}, {:class => "btn btn-default"}%>
-	<%=link_to t(:delete_selected), {}, {:class => "btn btn-default"}%>
+	<%=link_to fa_icon("plus")+" "+t(:new_contractor), {:action => :new}, {:class => "btn btn-default"}%>
 </div>
 <div class="btn-group">
-	<%=link_to t(:import_from_excel), {}, {:class => "btn btn-default"}%>
-	<%=link_to t(:export_from_excel), {}, {:class => "btn btn-default"}%>
+	<%=link_to fa_icon("upload")+" "+t(:import_from_excel), {}, {:class => "btn btn-default"}%>
+	<%=link_to fa_icon("download")+" "+t(:export_to_excel), {}, {:class => "btn btn-default"}%>
 </div>
 <div class="btn-group">
-	<%=link_to t(:search), {}, {:class => "btn btn-default"}%>
+	<%=link_to fa_icon("search")+" "+t(:search), {}, {:class => "btn btn-default"}%>
 </div>

@@ -34,7 +34,7 @@
             <li><%=link_to t(:training_needs), {}%></li>
             <li class="divider"></li>
             <li><%=link_to t(:employee_trainings), {}%></li>
-            <li><%=link_to t(:profile_trainings), {}%></li>
+            <li><%=link_to t(:profile_trainings), job_profiles_path%></li>
             <li class="divider"></li>
             <li><%=link_to t(:trainings_catalog), trainings_path%></li>
             <li class="divider"></li>
@@ -90,7 +90,7 @@
           <ul class="dropdown-menu" aria-labelledby="configuration">
 
             <li><a href="/settings.php"><%=t(:configuration)%></a></li>
-            <li><a href="/users.php"><%=t(:admin_users)%></a></li>
+            <li><%=link_to t(:user_profile), {:controller => :users, :action => :profile}%></li>
             <li class="divider"></li>
             <li><a href="#"><%=t(:logout)%></a></li>
 
