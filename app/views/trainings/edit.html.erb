@@ -10,7 +10,8 @@
 				<ul class="breadcrumb">
 					<li><%=link_to t(:home), root_path%></li>
 					<li><%=link_to t(:trainings), trainings_path%></li>
-					<li class="active"><%=t(:new_training)%></li>
+					<li><%=link_to @training.name, training_path(@training.id)%></li>
+					<li class="active"><%=t(:edit_training)%></li>
 				</ul>
 			</div>
 		</div>
@@ -52,7 +53,7 @@
 					</div>
 				</div>
 				<div class="panel-footer clearfix">
-					<%=f.submit "Crear", :class => "btn btn-default pull-right"%>
+					<%=f.submit t(:edit), :class => "btn btn-default pull-right"%>
 				</div>
 				<%end%>
 			</div>

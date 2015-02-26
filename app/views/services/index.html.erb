@@ -24,23 +24,30 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<table class="table table-striped table-bordered">
+			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Nombre</th>
-						<th>Descripcion</th>
+						<th><%=t(:name)%></th>
+						<th><%=t(:description)%></th>
+						<th style="text-align: center; width: 170px;"><%=t(:actions)%></th>
 					</tr>
 				</thead>
 				<tbody>
 					<%if @services.blank?%>
 					<tr>
-						<td colspan="4"> No hay datos para mostrar.</td>
+						<td colspan="3"><%=t(:no_data)%></td>
 					</tr>
 					<%else%>
 						<%@services.each do |s|%>
 						<tr>
 							<td><%=s.name%></td>
 							<td><%=s.description.truncate(40)%></td>
+							<td style="text-align: center;">
+								<div class="btn-group">
+									<%=link_to fa_icon("eye fa-4")+" "+t(:view), service_path(s.id), {:class => "btn btn-default"}%>
+									<%=link_to fa_icon("edit fa-4")+" "+t(:edit), edit_service_path(s.id), {:class => "btn btn-default"}%>
+								</div>
+							</td>
 						</tr>
 						<%end%>
 					<%end%>

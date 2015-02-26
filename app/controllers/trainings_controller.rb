@@ -27,6 +27,24 @@ class TrainingsController < ApplicationController
 		end
 	end
 
+	def edit
+		@training = Training.find(params[:id])	
+	end
+
+	def update
+		@training = Training.find(params[:id])
+		@training.update_attributes(training_params)
+		if @training.valid?
+			redirect_to :action => :show, :id => params[:id]
+		else
+			render :edit
+		end
+	end
+
+	def show
+		@training = Training.find(params[:id])
+	end
+
 	private
 
 	def set_current_user

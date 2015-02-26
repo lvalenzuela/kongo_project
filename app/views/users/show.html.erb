@@ -1,25 +1,33 @@
-<section class="content-header no-margin">
-    <h1>
-        <%=t(:users)%>
-        <small><%=@user.name%></small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><%=link_to t(:users_list), :action => :index%></li>
-        <li class="active"><%=t(:user_details)%></li>
-    </ol>
-</section>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:users)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:users), users_path%></li>
+					<li class="active"><%=@user.name%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
-<section class="content">
+<div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title"><%=t(:general_data)%> - <%=@user.name%></h3>
-					<div class="box-tools">
-						<%=link_to t(:edit_user), edit_user_path(@user.id), {:class => "btn btn-default btn-sm pull-right"}%>
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:general_data)%> - <%=@user.name%></h3>
+					<div class="btn-group pull-right">
+						<%=link_to t(:edit_user), edit_user_path(@user.id), {:class => "btn btn-default btn-sm"}%>
 					</div>
 				</div>
-				<div class="box-body">
+				<div class="panel-body">
 					<div class="row">
 						<div class="col-xs-6">
 							<table class="table table-striped">
@@ -55,9 +63,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="box-footer">
-				</div>
 			</div>
 		</div>
 	</div>
-</section>
+</div>

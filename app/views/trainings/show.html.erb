@@ -1,0 +1,49 @@
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:trainings)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:trainings), trainings_path%></li>
+					<li class="active"><%= @training.name%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:training_data)%> - <%=@training.name%></h3>
+					<div class="btn-group pull-right">
+						<%=link_to t(:edit_training), edit_training_path(@training.id), {:class => "btn btn-default btn-sm"}%>
+					</div>
+				</div>
+				<div class="panel-body">
+					<table class="table table-striped">
+						<tr>
+							<th><%=t(:name)%></th>
+							<td><%=@training.name%></td>
+						</tr>
+						<tr>
+							<th><%=t(:description)%></th>
+							<td><%=@training.description%></td>
+						</tr>
+						<tr>
+							<th><%=t(:validity_period)%></th>
+							<td><%=@training.validity_period%></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -89,7 +89,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="configuration"><span class="glyphicon glyphicon-cog"></span> <span class="caret"></span></a>
           <ul class="dropdown-menu" aria-labelledby="configuration">
 
-            <li><a href="/settings.php"><%=t(:configuration)%></a></li>
+            <li><%=link_to t(:system_users), users_path%></li>
             <li><%=link_to t(:user_profile), {:controller => :users, :action => :profile}%></li>
             <li class="divider"></li>
             <li><a href="#"><%=t(:logout)%></a></li>

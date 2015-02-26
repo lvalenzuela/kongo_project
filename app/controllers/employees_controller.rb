@@ -37,9 +37,17 @@ class EmployeesController < ApplicationController
 		@contractor_employee = ContractorEmployee.new()
 	end
 
-	def toggle_contractor
-		contractor_employee = ContractorEmployee.where(:contractor_id => params[:contractor_id], :employee_id => params[:employee_id]).first()
-		contractor_employee.toggle!(:enabled)
+	def save_active_contractor
+		#marcar todos como desabilitados
+		contractors = ContractorEmployee.where(:employee_id => params[:employee_id])
+		contractors.each do |c|
+			c.enabled = 0 #false
+			c.save!
+		end
+		#habilitar el que corresponde
+		contractor_employee = ContractorEmployee.find(params[:enabled_contractor])
+		contractor_employee.enabled = 1 #true
+		contractor_employee.save!
 		redirect_to :action => :edit_contractors, :id => params[:employee_id]
 	end
 
@@ -151,7 +159,7 @@ class EmployeesController < ApplicationController
 	private
 
 	def contractor_employee_params
-		params.require(:contractor_employee).permit(:employee_id, :contractor_id, :enabled)
+		params.require(:contractor_employee).permit(:employee_id, :contractor_id)
 	end
 
 	def employee_document_params
@@ -159,7 +167,7 @@ class EmployeesController < ApplicationController
 	end
 
 	def employee_params
-		params.require(:employee).permit(	:firstname, 
+		params.require(:employee).permit(:firstname, 
 										:lastname1, 
 										:lastname2, 
 										:rut, 

@@ -29,14 +29,16 @@
 					<tr>
 						<th><%=t(:idnumber)%></th>
 						<th><%=t(:firstname)%></th>
-						<th><%=t(:lastname)%></th>
+						<th><%=t(:lastname1)%></th>
+						<th><%=t(:lastname2)%></th>
+						<th><%=t(:contractor)%></th>
 						<th style="text-align: center; width: 170px;"><%=t(:actions)%></th>
 					</tr>
 				</thead>
 				<tbody>
 					<%if @employees.blank?%>
 					<tr>
-						<td colspan="4"> <%=t(:no_data)%></td>
+						<td colspan="5"> <%=t(:no_data)%></td>
 					</tr>
 					<%else%>
 						<%@employees.each do |w|%>
@@ -44,6 +46,8 @@
 							<td><%=link_to w.rut, employee_path(w.id)%></td>
 							<td><%=w.firstname%></td>
 							<td><%=w.lastname1%></td>
+							<td><%=w.lastname2%></td>
+							<td><%=active_employee_contractor(w.id)%></td>
 							<td style="text-align: center;">
 								<div class="btn-group">
 									<%=link_to fa_icon("eye fa-4")+" "+t(:view), employee_path(w.id), {:class => "btn btn-default"}%>

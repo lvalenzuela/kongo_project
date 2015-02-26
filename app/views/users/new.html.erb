@@ -1,24 +1,33 @@
-<section class="content-header no-margin">
-    <h1>
-        <%=t(:users)%>
-        <small><%=t(:new_user)%></small>
-    </h1>
-    <ol class="breadcrumb">
-        <li class="active"><%=t(:new_user)%></li>
-    </ol>
-</section>
+<div class="container">
+	<div class="page-header" id="banner">
+		<div class="row">
+			<div class="col-xs-12">
+				<h1 id="nav-tabs"><%=t(:users)%></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="breadcrumb">
+					<li><%=link_to t(:home), root_path%></li>
+					<li><%=link_to t(:users), users_path%></li>
+					<li class="active"><%=t(:new_user)%></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
-<section class="content">
+<div class="container">
 	<div class="row">
 		<div class="col-xs-8 col-xs-offset-2">
-			<div class="box box-info">
-				<div class="box-header">
-					<h3 class="box-title">Nuevo Usuario</h3>
+			<div class="panel panel-default">
+				<div class="panel-heading clearfix">
+					<h3 class="panel-title"><%=t(:new_user)%></h3>
 				</div>
 				<%=form_for @user do |f|%>
-				<div class="box-body">
+				<div class="panel-body">
                     <%if @user.errors.any?%>
-                        <div class="callout callout-warning">
+                        <div class="alert alert-warning">
                             <h4><%=pluralize(@user.errors.count,"error")%> no permitieron llevar a cabo la operacion</h4>
                             <ul>
                                 <%@user.errors.full_messages.each do |msg|%>
@@ -66,13 +75,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="box-footer clearfix">
-					<div class="pull-right">
-						<%=f.submit "Crear Usuario", :class => "btn btn-primary btn-lg"%>
-					</div>
+				<div class="panel-footer clearfix">
+					<%=f.submit "Crear Usuario", :class => "btn btn-default pull-right"%>
 				</div>
 				<%end%>
 			</div>
 		</div>
 	</div>
-</section>
+</div>

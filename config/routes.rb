@@ -49,7 +49,7 @@ Rails.application.routes.draw do
         get :edit_contractors
         post :create_contractor_employee
         delete :destroy_contractor
-        put :toggle_contractor
+        put :save_active_contractor
       end
     end
 

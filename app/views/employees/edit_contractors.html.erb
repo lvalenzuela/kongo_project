@@ -25,12 +25,14 @@
 				<div class="panel-heading clearfix">
 					<h3 class="panel-title"><%=t(:employee_contractors)%></h3>
 				</div>
+				<%=form_tag save_active_contractor_employees_path, :method => :put do%>
+				<%=hidden_field_tag :employee_id, @employee.id%>
 				<div class="panel-body">
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th><%=t(:contractor)%></th>
-								<th style="text-align:center;"><%=t(:status)%></th>
+								<th style="text-align:center;"><%=t(:active)%></th>
 								<th style="text-align:center;"><%=t(:delete)%></th>
 							</tr>
 						</thead>
@@ -44,7 +46,7 @@
 								<tr>
 									<td><%=contractor_name(c.contractor_id)%></td>
 									<td style="text-align:center;">
-											<%=link_to (c.enabled ? t(:active) : t(:inactive)), {:action => :toggle_contractor, :params => {:employee_id => @employee.id, :contractor_id => c.contractor_id}}, {:class => "btn btn-default", :method => :put}%>
+											<%=radio_button_tag :enabled_contractor, c.id, c.enabled%>
 									</td>
 									<td style="text-align:center;"><%=link_to fa_icon("times"), {:action => :destroy_contractor, :params => {:employee_id => @employee.id, :contractor_id => c.contractor_id}}, {:class => "btn btn-default", :method => :delete, :data => {:confirm => "¿Está seguro que desea borrar este registro?"}}%></td>
 								</tr>
@@ -53,11 +55,15 @@
 						</tbody>
 					</table>
 				</div>
+				<div class="panel-footer clearfix">
+					<%=submit_tag t(:save), :class => "btn btn-default pull-right"%>
+				</div>
+				<%end%>
 			</div>
 		</div>
 	</div>	
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-xs-8 col-xs-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading clearfix">
 					<h3 class="panel-title"><%=t(:new_contractor)%></h3>
@@ -76,13 +82,9 @@
                         </div>
                     <%end%>
 					<div class="row">
-						<div class="form-group col-xs-8">
+						<div class="form-group col-xs-12">
 							<label><%=t(:contractor)%></label>
 							<%=f.select :contractor_id, options_for_select(@contractors_list.collect{|c| [c.business_name, c.id]}), {}, {:class => "form-control"}%>
-						</div>
-						<div class="form-group col-xs-4">
-							<label><%=t(:status)%></label>
-							<%=f.select :enabled, options_for_select([[t(:active), true]]), {}, {:class => "form-control", :readonly => true}%>
 						</div>
 					</div>
 				</div>
